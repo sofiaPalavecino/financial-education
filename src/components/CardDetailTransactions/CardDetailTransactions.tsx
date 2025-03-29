@@ -1,7 +1,7 @@
 import { Card, Nav, Tab } from "react-bootstrap";
 import RecentExpenses from '../ExpensesTable/ExpensesTable';
 import MembersList from "../MembersList/MembersList";
-import ObjectivesProgress from "../ObjetiveProgress/ObjetiveProgress";
+import Achievements from "../Achievements/Achievements";
 import { useState } from "react";
 
 type RecentExpensesProps = {
@@ -45,7 +45,7 @@ export default function CardDetailGroup({ onClick }: RecentExpensesProps) {
                         ]} />
                     </Tab.Pane>
                     <Tab.Pane eventKey="objetives">
-                    <ObjectivesProgress progress={60} />
+                        <Achievements></Achievements>
                     </Tab.Pane>
                 </Tab.Content>
                 {/* <Button variant="primary" style={{ width: '100%' }}><i className="bi bi-plus"></i>Agregar movimiento</Button> */}

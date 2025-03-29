@@ -30,13 +30,7 @@ export default function Home () {
                     </Modal>
                     <CardDetailGroup onClick={handleShow}/>
                 </div>
-            </section>
-            <section>
-                <div className="wrap">
-                    <h2 className="mb-4">Objetivos</h2>
-                    <Goal name={"Viaje"} goal={350} progress={75.8}></Goal>
-                    <FloatingButton onClick={handleShow} />
-                </div>
+                <FloatingButton onClick={handleShow} />
             </section>
         </main>
     )
