@@ -1,16 +1,16 @@
 import { supabase } from "../clients/SupabaseClients"
 
-export const GetGroupsExpensesAndIncomes = async (userId: number): Promise<any> => {
+export const GetGroupsExpensesAndIncomes = async (groupId: number): Promise<any> => {
     try { 
         const { data: expenses, error: expensesError} = await supabase
         .from('expenses')
         .select('*')
-        .eq('user_id', userId);
+        .eq('group_id', groupId);
 
         const { data: incomes, error: incomesError} = await supabase
         .from('incomes')
         .select('*')
-        .eq('user_id', userId)
+        .eq('group_id', groupId)
 
         const expensesWithType = expenses?.map((expense: any) => ({ ...expense, type: 'expense'})) || [];
         const incomesWithType = incomes?.map((income: any) => ({ ...incomes, type: 'income'})) || [];

@@ -8,7 +8,7 @@ import CardDetailTrasactions from "../../components/CardDetailTransactions/CardD
 import { IExpense } from "../../interfaces/IRecentExpenses";
 import mockExpenses from "../../components/__mocks__/mockExpenses";
 import mockGroups from "../../components/__mocks__/mockGroups"
-import { GetGroupsExpensesAndIncomes } from "@/services/Services"
+import { GetGroupsExpensesAndIncomes } from "../../services/Services"
 
 export default function Home () {
     const [show, setShow] = useState(false);
