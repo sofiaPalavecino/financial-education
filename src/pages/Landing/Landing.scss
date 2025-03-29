@@ -1,0 +1,23 @@
+@import "../../scss/variables.scss";
+@import "../../scss/fonts.scss";
+ 
+
+.landingImg {
+    background-image: url("../../assets/landingImg.png");
+    height: 400px;
+    max-width: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  @media (max-width: 768px) {
+    .landingImg {
+      height: 100%; /* 100% de la altura de la ventana */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .landingImg {
+      height: 100%;
+    }
+  }
