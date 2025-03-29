@@ -11,12 +11,12 @@ export default function ModalCreateGroup({show, handleClose}: any) {
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Nombre del grupo</Form.Label>
-                        <Form.Label>Objetivo del grupo</Form.Label>
                         <Form.Control
-                            type="email"
                             placeholder="e.g.,Casa, Viaje a París"
                             autoFocus
                         />
+                        <Form.Label className="mt-3">Objetivo del grupo</Form.Label>
+                        <Form.Control autoFocus />
                     </Form.Group>
                 </Form>
             </Modal.Body>

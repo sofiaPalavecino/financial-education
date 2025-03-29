@@ -1,9 +1,9 @@
 import { useState } from "react"
 import MoneyFlowCard from "../../components/MoneyFlowCard/MoneyFlowCard"
-import RecentExpenses from "../../components/ExpensesTable/ExpensesTable"
 import FloatingButton from "../../components/FloatingButton/FloatingButton"
 import Modal from 'react-bootstrap/Modal'
 import { Button } from "react-bootstrap";
+import CardDetailGroup from '../../components/CardDetailTransactions/CardDetailTransactions';
 
 export default function Home () {
 
@@ -26,7 +26,7 @@ export default function Home () {
                     <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
                     </Modal.Footer>
                 </Modal>
-                <RecentExpenses onClick={handleShow}></RecentExpenses>
+                <CardDetailGroup onClick={handleShow}/>
                 <FloatingButton onClick={handleShow} />
             </div>
         </section>
