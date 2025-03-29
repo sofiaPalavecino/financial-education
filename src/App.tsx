@@ -23,7 +23,7 @@ function App() {
             <Route path="grupos" element={<Groups />}></Route>
             <Route path="educacion" element={<Education />}></Route>
             <Route path="login" element={<Login />}></Route>
-            <Route path="Register" element={<Register />}></Route>
+            <Route path="register" element={<Register />}></Route>
         </Routes>
       </div>
     </main>
