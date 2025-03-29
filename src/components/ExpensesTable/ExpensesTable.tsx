@@ -3,8 +3,19 @@ import { BsPlusLg } from "react-icons/bs";
 import ExpensesTableItem from "../ExpensesTableItem/ExpensesTableItem";
 import './ExpensesTable.scss'
 import { IRecentExpenses } from "../../interfaces/IRecentExpenses";
+import { useEffect, useState } from "react";
+import { ICategory } from "../../interfaces/ICategory";
+import { getCategories } from "../../services/api";
 
 export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
+  const [categories, setCategories] = useState<ICategory[]>([]);
+
+  useEffect(() => {
+    getCategories().then((data) => {
+        if (data) setCategories(data);
+    });
+  }, []);
+
   return (
     <Card className="c-recent-expenses shadow-sm">
       <Card.Body>
@@ -24,7 +35,7 @@ export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
         </div>
         <ListGroup variant="flush">
           {expenses.map((expense, index) => (
-            <ExpensesTableItem key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />
+            <ExpensesTableItem categories={categories} key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />
           ))}
         </ListGroup>
       </Card.Body>

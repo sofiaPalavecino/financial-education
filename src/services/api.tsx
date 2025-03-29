@@ -32,3 +32,25 @@ export const fetchGroupExpensesAndIncomes = async (groupId: number): Promise<IEx
         return [];
     }
 };
+
+export const getCategories = async () => {
+    try {
+        const { data, error } = await supabase
+            .from('categories')
+            .select('id, name')
+
+        if (error) {
+            console.error('Error fetching categories:', error)
+            return null
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+
+
+
+

@@ -13,6 +13,7 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
             setActiveKey(key);
         }
     };
+
     return (
         <Tab.Container activeKey={activeKey} onSelect={handleTabSelect}>
             <Card className="shadow-sm">
@@ -48,7 +49,6 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
                             <Achievements></Achievements>
                         </Tab.Pane>
                     </Tab.Content>
-                    {/* <Button variant="primary" style={{ width: '100%' }}><i className="bi bi-plus"></i>Agregar movimiento</Button> */}
                 </Card.Body>
             </Card>
         </Tab.Container>
