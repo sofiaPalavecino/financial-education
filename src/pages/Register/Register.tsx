@@ -1,8 +1,13 @@
 import AuthForm from "../../components/AuthForm/AuthForm";
+import './Register.scss'
 export default function Register () {
     return (
         
-        <AuthForm isSignup={true} />
+        <>
+        <section className="authImg"></section>
+       <AuthForm isSignup={true} />
+      
+       </>
     
     )
 }

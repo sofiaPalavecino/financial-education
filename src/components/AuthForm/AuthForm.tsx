@@ -77,8 +77,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
     <Container className="mt-5">
       <Row className="justify-content-md-center">
         <Col md={6}>
-          <h2 className="text-center">{isSignup ? "Crear una cuenta" : "Bienvenido de nuevo"}</h2>
-          <p className="text-center">
+          <h2 className="text-center title">{isSignup ? "Crear una cuenta" : "Bienvenido de nuevo"}</h2>
+          <p className="text-center subtitle">
             {isSignup
               ? "Ingresa tus detalles para crear una cuenta"
               : "Ingresa tus credenciales para acceder a tu cuenta"}
@@ -142,7 +142,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
                 <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
               </Form.Group>
             )}
-            <Button variant="dark" type="submit" className="w-100" disabled={!isValidForm}>
+            <Button  type="submit" className="w-100 buttonPrimary" disabled={!isValidForm}>
               {isSignup ? "Crear cuenta" : "Iniciar sesión"}
             </Button>
           </Form>

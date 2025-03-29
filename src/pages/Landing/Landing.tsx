@@ -1,12 +1,14 @@
 import { Button, Container,  Row, Col } from "react-bootstrap";
 import KeyFeaturesCard from "../../components/KeyFeaturesCard/KeyFeaturesCard";
+import './Landing.scss'
+
 
 
 const Landing = () => {
+
   const features = [
     {
       title: "Mis gastos 💰",
-      icon: "",
       description: "Realiza un seguimiento y clasificá sus gastos",
       features: [
         "Registro de gastos simple con categorías",
@@ -17,7 +19,6 @@ const Landing = () => {
     },
     {
       title: "Grupos 👥",
-      icon: "",
       description: "Crea un presupuesto(?) con familia y amigos",
       features: [
         "Crear grupos para gastos compartidos",
@@ -27,12 +28,11 @@ const Landing = () => {
     },
     {
       title: "Educación 📚",
-      icon: "",
       description: "Conoce como podes ahorrar y recibi tips personalizados",
       features: [
-        "Lecciones financieras del tamaño de un bocado",
+        // "Lecciones financieras del tamaño de un bocado",
         "Consejos de ahorro personalizados impulsados por IA",
-        "Seguimiento del progreso con niveles desbloqueables",
+        "Seguimiento del progreso",
         "Consejos prácticos adaptados a tus gastos",
       ],
     },
@@ -41,24 +41,27 @@ const Landing = () => {
 
   return (
     <>
-      <Container className="text-center my-5">
-        <h1>Simplifica tu vida financiera</h1>
-        <p>
+      <Container className="text-center my-3">
+        <h1 > AURA</h1>
+        <h2 className="title py-2 ">Simplifica tu vida financiera</h2>
+        <p className= "subtitle py-3 ">
         Controla los gastos, ya sea de manera individual o grupal y aprende habilidades financieras todo en un solo lugar. Toma el control de tu dinero con nuestra intuitiva aplicación de seguimiento de gastos.
         </p>
-        <Button variant="primary" className="buttonPrimary mx-2">
-          Iniciar sesion
+        <Button  className="buttonPrimary mx-2">
+        <a href="/login">Iniciar sesión</a>
         </Button>
-        <Button variant="secondary" className="mx-2 buttonSecondary">
-          Registrate
+        <Button  className="mx-2 buttonSecondary">
+        <a href="/register" >Regístrate</a>
         </Button>
       </Container>
   
+      <section className="landingImg"> </section>
+
       <section id="features" className="py-5">
         <Container>
           <div className="text-center mb-5">
-            <h2 className="fw-bold">¿Que te ofrecemos?</h2>
-            <p className="text-muted">
+            <h2 className="title">¿Que te ofrecemos?</h2>
+            <p className="subtitle py-2">
               Todo lo que necesitas para gestionar tu ahorro en un solo lugar.
             </p>
           </div>
