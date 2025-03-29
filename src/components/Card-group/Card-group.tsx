@@ -1,7 +1,8 @@
 import { Button } from "react-bootstrap";
 import './Card-group.scss';
+import { useNavigate } from "react-router-dom";
 export default function CardGroup({ groups, onAddGroup }: any) {
-
+    const navigate = useNavigate();
     return (
         <div className="row mt-4 c-card-group">
             <div className="col-md-4 mb-4">
@@ -21,9 +22,9 @@ export default function CardGroup({ groups, onAddGroup }: any) {
                         <div className="card-body card-body-center">
                             <h5 className="card-title">{group.title}</h5>
                             <p className="card-text">{group.members}</p>
-                            <a href="#" className="btn btn-outline-primary">
+                            <Button onClick={() => navigate(`/home?group=${encodeURIComponent(group.title)}`)} variant="outline-primary">
                                 Ver detalles <i className="bi bi-arrow-right-short"></i>
-                            </a>
+                            </Button>
                         </div>
                     </div>
                 </div>

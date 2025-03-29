@@ -1,3 +1,4 @@
+import mockGroups from "../../components/__mocks__/MockGroups";
 import CardGroup from "../../components/Card-group/Card-group";
 import ModalCreateGroup from "../../components/ModalCreateGroup/ModalCreateGroup";
 import { useState } from "react";
@@ -7,12 +8,6 @@ export default function Groups () {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const groups = [
-        { title: "Casa", members: "Miembros..." },
-        { title: "Viaje a París", members: "Miembros..." },
-        { title: "Trabajo", members: "Miembros..." }
-    ];
-
     return (
         <section className="c-group">
             <div className="wrap">
@@ -21,7 +16,7 @@ export default function Groups () {
                     <i className="bi bi-people-fill fs-1"></i>
                 </div>
                 <div>Comparta los gastos y realice un seguimiento de los gastos del grupo</div>
-                <CardGroup groups={groups} onAddGroup={handleShow}/>
+                <CardGroup groups={mockGroups} onAddGroup={handleShow}/>
                 <ModalCreateGroup show={show} handleClose={handleClose}/>
             </div>
         </section>
