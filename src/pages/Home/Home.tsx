@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import MoneyFlowCard from "../../components/MoneyFlowCard/MoneyFlowCard"
 import FloatingButton from "../../components/FloatingButton/FloatingButton"
 import Modal from 'react-bootstrap/Modal'
@@ -8,6 +8,7 @@ import CardDetailTrasactions from "../../components/CardDetailTransactions/CardD
 import { IExpense } from "../../interfaces/IRecentExpenses";
 import mockExpenses from "../../components/__mocks__/mockExpenses";
 import mockGroups from "../../components/__mocks__/mockGroups"
+import { GetGroupsExpensesAndIncomes } from "@/services/Services"
 
 export default function Home () {
     const [show, setShow] = useState(false);
@@ -21,6 +22,14 @@ export default function Home () {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    useEffect(() => {
+        console.log("Componente Groups montado");
+        GetGroupsExpensesAndIncomes(2);
+        return () => {
+            console.log("Componente Groups desmontado");
+        };
+    }, []);
 
     return (
         <main>
