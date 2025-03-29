@@ -1,18 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Sidebar = () => {
-  const [openSubmenu, setOpenSubmenu] = useState(null);
-
-  const toggleSubmenu = (menu: any) => {
-    setOpenSubmenu(openSubmenu === menu ? null : menu);
-  };
-
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
