@@ -1,0 +1,11 @@
+.c-card-group{
+    .card {
+        height: 16rem;
+        .card-body-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
