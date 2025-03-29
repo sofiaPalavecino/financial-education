@@ -1,10 +1,4 @@
-export interface IExpense {
-    title: string;
-    date: string;
-    amount: string;
-    category: string;
-    priority: "Low" | "Medium" | "High";
-};
+import { IExpense } from "./IExpense";
 
 export interface IRecentExpenses {
     onClick: () => void;
