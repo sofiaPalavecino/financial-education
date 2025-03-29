@@ -1,15 +1,12 @@
 /* import { useState } from 'react' */
 import './App.scss'
+import Sidebar from './components/Sidebar'
 
 function App() {
 
   return (
     <main>
-      <section>
-        <div className="wrap">
-          <h1>Hola</h1>
-        </div>
-      </section>
+      <Sidebar/>
     </main>
   )
 }
