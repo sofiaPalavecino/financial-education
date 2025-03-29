@@ -24,3 +24,77 @@ section{
   padding: 0 2em;
 }
 
+.title{
+  font-family: $titleFont;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  color: $principal !important;
+}
+
+.h2title{
+  font-family: $titleFont;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  color: $principal !important;
+}
+
+
+.subtitle{
+  font-family: $bodyFont;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 22px;
+  color: $typography !important;
+}
+
+.listStyleLi{
+  font-family: $bodyFont;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 15px;
+  color: $typography !important;
+
+}
+
+.buttonPrimary{
+  background-color: $principal !important;
+  border-color:  $principal !important;
+  font-family: $bodyFont;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  width: 200px; 
+  height: 50px; 
+  padding: 10px 20px; 
+}
+
+.buttonPrimary a{
+   text-decoration: none !important;
+   color: $typography !important;
+}
+
+.buttonSecondary {
+   background-color: $accentuation !important;
+   border-color:  $accentuation !important;
+   
+   font-family: $bodyFont;
+   font-optical-sizing: auto;
+   font-weight: 600;
+   font-style: normal;
+   font-size: 18px;
+   width: 200px; 
+   height: 50px; 
+   padding: 10px 20px; 
+  
+}
+
+.buttonSecondary a{
+   text-decoration: none !important;
+   color: $typography !important;
+}
+

@@ -2,14 +2,28 @@ import { Card, ListGroup, Button } from "react-bootstrap";
 import { BsPlusLg } from "react-icons/bs";
 import ExpensesTableItem from "../ExpensesTableItem/ExpensesTableItem";
 import './ExpensesTable.scss'
+import { IRecentExpenses } from "../../interfaces/IRecentExpenses";
+import { useEffect, useState } from "react";
+import { ICategory } from "../../interfaces/ICategory";
+import { getCategories } from "../../services/api";
 
-const expenses = [
+export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
+  
+  const [categories, setCategories] = useState<ICategory[]>([]);
+
+  useEffect(() => {
+    getCategories().then((data) => {
+        if (data) setCategories(data);
+    });
+  }, []);
+
+  const expensesList = [
     {
         title: "Supermercado",
         date: "2023-03-15",
         amount: "25.99",
         category: "Comida",
-        priority: "Medium",
+        priority: "Medium", // ✅ Now TypeScript recognizes this as valid
     },
     {
         title: "Carga de sube",
@@ -53,13 +67,12 @@ const expenses = [
         category: "Ropa",
         priority: "Medium",
     },
-];
+  ];
 
-type RecentExpensesProps = {
-    onClick: () => void;
-};
+  type RecentExpensesProps = {
+      onClick: () => void;
+  };
 
-export default function RecentExpenses({ onClick }: RecentExpensesProps) {
   return (
     <Card className="c-recent-expenses shadow-sm">
       <Card.Body>
@@ -79,7 +92,7 @@ export default function RecentExpenses({ onClick }: RecentExpensesProps) {
         </div>
         <ListGroup variant="flush">
           {expenses.map((expense, index) => (
-            <ExpensesTableItem key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />
+            <ExpensesTableItem categories={categories} key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />
           ))}
         </ListGroup>
       </Card.Body>

@@ -1,14 +1,12 @@
+import { ICategory } from "../../interfaces/ICategory";
+import { IExpense } from "../../interfaces/IExpense";
 import { ListGroup, Badge } from "react-bootstrap";
 
-interface ExpenseItemProps {
-  title: string;
-  date: string;
-  amount: string;
-  category: string;
-  priority: "Low" | "Medium" | "High";
+interface Props extends IExpense {
+  categories: ICategory[];
 }
 
-const priorityColors: Record<ExpenseItemProps["priority"], string> = {
+const priorityColors: Record<IExpense["priority"], string> = {
   Low: "success",
   Medium: "warning",
   High: "danger",
@@ -18,9 +16,13 @@ export default function ExpensesTableItem({
   title,
   date,
   amount,
-  category,
+  type,
+  category_id,
   priority,
-}: ExpenseItemProps) {
+  categories,
+}: Props) {
+  const categoryName = categories.find(cat => cat.id === category_id)?.name;
+  const isExpense = type === "expense"; 
   return (
     <ListGroup.Item className="d-flex justify-content-between align-items-center">
       <div>
@@ -30,7 +32,8 @@ export default function ExpensesTableItem({
       </div>
       <div className="d-flex align-items-center gap-2">
         <Badge bg={priorityColors[priority]}>{priority}</Badge>
-        <Badge bg="secondary">{category}</Badge>
+        {isExpense && <Badge bg="secondary">{categoryName }</Badge>}
+        <Badge bg={priorityColors[priority]}>{type}</Badge>
         <strong>${amount}</strong>
       </div>
     </ListGroup.Item>
