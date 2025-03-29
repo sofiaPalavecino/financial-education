@@ -1,6 +1,7 @@
 import { Card, ListGroup, Button } from "react-bootstrap";
 import { BsPlusLg } from "react-icons/bs";
 import ExpensesTableItem from "../ExpensesTableItem/ExpensesTableItem";
+import './ExpensesTable.scss'
 
 const expenses = [
     {
@@ -38,6 +39,20 @@ const expenses = [
         category: "Ropa",
         priority: "Medium",
     },
+    {
+        title: "Short",
+        date: "2023-03-08",
+        amount: "18.99",
+        category: "Ropa",
+        priority: "Medium",
+    },
+    {
+        title: "Medias",
+        date: "2023-03-08",
+        amount: "18.99",
+        category: "Ropa",
+        priority: "Medium",
+    },
 ];
 
 type RecentExpensesProps = {
@@ -46,7 +61,7 @@ type RecentExpensesProps = {
 
 export default function RecentExpenses({ onClick }: RecentExpensesProps) {
   return (
-    <Card className="shadow-sm">
+    <Card className="c-recent-expenses shadow-sm">
       <Card.Body>
         <div className="container d-flex justify-content-between">
             <div>
