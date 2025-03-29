@@ -51,6 +51,91 @@ export const getCategories = async () => {
     }
 };
 
+export const fetchUserGroups = async (userId: number): Promise<any> => {
+    try {
+        const { data, error } = await supabase
+            .from('usersXgroups')
+            .select('groups(*)')
+            .eq('user_id', userId)
+            .eq('is_personal_space', false)
+
+        if (error) {
+            console.error('Error fetching groups:', error)
+            return null
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+
+export const fetchUserGroupPersonal = async (userId: number): Promise<any> => {
+    try {
+        const { data, error } = await supabase
+            .from('usersXgroups')
+            .select('groups(*)')
+            .eq('user_id', userId)
+            .eq('is_personal_space', true)
+
+        if (error) {
+            console.error('Error fetching group personal:', error)
+            return null
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+
+export const addExpense = async (expense): Promise<any> => {
+    try {
+        const { data, error } = await supabase
+        .from('expenses')
+        .insert([
+            { user_id: expense.user_id, group_id: expense.group_id, amount: expense.amount,
+              description: expense.description, category_id: expense.category_id,
+              title: expense.title, priority: expense.priority
+            }
+        ])
+
+        if (error) {
+            console.error('Error fetching group personal:', error)
+            return null
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+
+export const addIncomes = async (income): Promise<any> => {
+    try {
+        const { data, error } = await supabase
+        .from('incomes')
+        .insert([
+            { user_id: income.user_id, group_id: income.group_id, amount: income.amount,
+              description: income.description, title: income.title
+            }
+        ])
+
+        if (error) {
+            console.error('Error fetching group personal:', error)
+            return null
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+
 
 
 
