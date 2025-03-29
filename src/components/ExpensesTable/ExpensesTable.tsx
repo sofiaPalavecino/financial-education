@@ -9,7 +9,7 @@ const expenses = [
         date: "2023-03-15",
         amount: "25.99",
         category: "Comida",
-        priority: "Medium", // ✅ Now TypeScript recognizes this as valid
+        priority: "Medium",
     },
     {
         title: "Carga de sube",
@@ -65,7 +65,7 @@ export default function RecentExpenses({ onClick }: RecentExpensesProps) {
       <Card.Body>
         <div className="container d-flex justify-content-between">
             <div>
-                <h4>Tablero de movimientos</h4>
+                <h4>Tablero de movimientos💸</h4>
                 <p className="text-muted">Últimos movimientos</p>
             </div>
             <Button

@@ -10,7 +10,7 @@ const Sidebar = () => {
       <Container>
         <Navbar.Brand href="/">Mis gastitos</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="justify-content-end">
+        <Navbar.Collapse className="justify-content-end">
           <Nav className="">
             <Nav.Link href="/grupos">Grupos</Nav.Link>
             <Nav.Link href="/educacion">Educación</Nav.Link>
