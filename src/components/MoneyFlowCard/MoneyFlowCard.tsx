@@ -1,6 +1,7 @@
 import { Card, Nav, Tab } from 'react-bootstrap';
 import { useState } from 'react';
 import NewExpenseForm from "../../components/NewExpenseForm/NewExpenseForm"
+import NewIncomeForm from '../NewIncomeForm/NewIncomeForm';
 
 export default function MoneyFlowCard () {
 
@@ -18,10 +19,10 @@ export default function MoneyFlowCard () {
                 <Card className="shadow-sm">
                     <Card.Header>
                         <Nav variant="tabs">
-                            <Nav.Item>
+                            <Nav.Item className='w-50 text-center'>
                                 <Nav.Link eventKey="expenses">Gasto</Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
+                            <Nav.Item className='w-50 text-center'>
                                 <Nav.Link eventKey="incomes">Ingreso</Nav.Link>
                             </Nav.Item>
                         </Nav>
@@ -32,8 +33,7 @@ export default function MoneyFlowCard () {
                                 <NewExpenseForm></NewExpenseForm>
                             </Tab.Pane>
                             <Tab.Pane eventKey="incomes">
-                                <p>This is the profile tab content. You can put any components or information here.</p>
-                                <p>User details, avatar, bio, and other profile-related information would go here.</p>
+                                <NewIncomeForm></NewIncomeForm>
                             </Tab.Pane>
                         </Tab.Content>
                     </Card.Body>

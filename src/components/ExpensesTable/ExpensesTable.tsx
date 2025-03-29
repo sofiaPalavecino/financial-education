@@ -1,4 +1,5 @@
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Button } from "react-bootstrap";
+import { BsPlusLg } from "react-icons/bs";
 import ExpensesTableItem from "../ExpensesTableItem/ExpensesTableItem";
 
 const expenses = [
@@ -39,12 +40,28 @@ const expenses = [
     },
 ];
 
-export default function RecentExpenses() {
+type RecentExpensesProps = {
+    onClick: () => void;
+};
+
+export default function RecentExpenses({ onClick }: RecentExpensesProps) {
   return (
     <Card className="shadow-sm">
       <Card.Body>
-        <h4>Tablero de movimientos</h4>
-        <p className="text-muted">Tus últimos movimientos</p>
+        <div className="container d-flex justify-content-between">
+            <div>
+                <h4>Tablero de movimientos</h4>
+                <p className="text-muted">Tus últimos movimientos</p>
+            </div>
+            <Button
+                variant="primary"
+                className="p-1"
+                onClick={onClick}
+                style={{height: "2.6em", width: "2.6em"}}
+                >
+                <BsPlusLg size={24} />
+            </Button>
+        </div>
         <ListGroup variant="flush">
           {expenses.map((expense, index) => (
             <ExpensesTableItem key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />

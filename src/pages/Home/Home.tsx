@@ -26,8 +26,7 @@ export default function Home () {
                     <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
                     </Modal.Footer>
                 </Modal>
-                <RecentExpenses></RecentExpenses>
-                <MoneyFlowCard></MoneyFlowCard>
+                <RecentExpenses onClick={handleShow}></RecentExpenses>
                 <FloatingButton onClick={handleShow} />
             </div>
         </section>

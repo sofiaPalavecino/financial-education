@@ -2,11 +2,11 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
 
-export default function NewExpenseForm () {
+export default function NewIncomeForm () {
 
     const [formData, setFormData] = useState({
         amount: "",
-        category: "",
+        origin: "",
         priority: "Medium",
         description: "",
       });
@@ -17,7 +17,7 @@ export default function NewExpenseForm () {
     
       const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Expense Submitted:", formData);
+        console.log("Income Submitted:", formData);
       };
 
     return (
@@ -33,22 +33,15 @@ export default function NewExpenseForm () {
                 />
             </Form.Group>
 
-            <Form.Group controlId="category" className="mb-3">
-                <Form.Label>Categoria</Form.Label>
-                <Form.Select name="category" value={formData.category} onChange={handleChange}>
-                    <option value="" selected disabled>Seleccionar categoria</option>
-                    <option value="food">Comida</option>
-                    <option value="transport">Transporte</option>
-                    <option value="entertainment">Cultura</option>
-                </Form.Select>
-            </Form.Group>
-
-            <Form.Group controlId="priority" className="mb-3">
-                <Form.Label>Prioridad</Form.Label>
-                <Form.Select name="priority" value={formData.priority} onChange={handleChange}>
-                    <option value="Low">Baja</option>
-                    <option value="Medium">Media</option>
-                    <option value="High">Alta</option>
+            <Form.Group controlId="origin" className="mb-3">
+                <Form.Label>Origen</Form.Label>
+                <Form.Select name="origin" value={formData.origin} onChange={handleChange}>
+                    <option value="" selected disabled>Seleccionar origen</option>
+                    <option value="montly-money">Dinero mensual</option>
+                    <option value="salary">Salario</option>
+                    <option value="extra">Dinero Extra</option>
+                    <option value="plus">Plus</option>
+                    <option value="other">Otro</option>
                 </Form.Select>
             </Form.Group>
 
@@ -65,7 +58,7 @@ export default function NewExpenseForm () {
 
             <Button type="submit" variant="dark" className="w-100 d-flex align-items-center justify-content-center gap-2">
                 <BsPlus size={20} />
-                Agregar gasto
+                Agregar ingreso
             </Button>
         </Form>
     )
