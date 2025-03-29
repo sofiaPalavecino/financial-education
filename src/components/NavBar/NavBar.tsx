@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">Mis gastitos</Navbar.Brand>
+        <Navbar.Brand href="/home">Mis gastitos</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="">

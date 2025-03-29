@@ -1,5 +1,7 @@
+import { login } from "../../services/api";
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 interface AuthFormProps {
   isSignup: boolean;
@@ -15,6 +17,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isValid, setIsValid] = useState(false);
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,7 +32,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
   };
 
   const validateField = (name: string, value: string) => {
-    let newErrors = { ...errors };
+    const newErrors = { ...errors };
 
     switch (name) {
       case "name":
@@ -63,15 +66,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
     setIsValid(Object.keys(newErrors).length === 0);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isValid) {
-      console.log("Datos enviados:", formData);
-    }
-  };
+    
+    if (!isValid) return;
 
-  // Validación adicional para los campos vacíos
-  const isValidForm = Object.keys(errors).length === 0 && Object.values(formData).every((value) => value.trim() !== "");
+    try {
+        const user = await login(formData.email, formData.password);
+        
+        if (!user) {
+            setErrors({ ...errors, general: "Credenciales incorrectas" });
+            return;
+        }
+
+        console.log("Usuario autenticado:", user);
+        navigate("/home");
+      } catch (error) {
+          console.error("Error en el inicio de sesión:", error);
+          setErrors({ ...errors, general: "Ocurrió un error. Inténtelo más tarde." });
+      }
+  };
 
   return (
     <Container className="mt-5">
@@ -142,7 +156,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
                 <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
               </Form.Group>
             )}
-            <Button  type="submit" className="w-100 buttonPrimary" disabled={!isValidForm}>
+            <Button type="submit" className="w-100 buttonPrimary" disabled={!isValid}>
               {isSignup ? "Crear cuenta" : "Iniciar sesión"}
             </Button>
           </Form>
