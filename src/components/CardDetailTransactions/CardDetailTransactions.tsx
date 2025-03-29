@@ -25,10 +25,10 @@ export default function CardDetailGroup({ onClick }: RecentExpensesProps) {
                         <Nav.Link eventKey="transactions">Movimientos</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="members">Miembros</Nav.Link>
+                        <Nav.Link eventKey="objetives">Objetivos</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="objetives">Objetivos</Nav.Link>
+                        <Nav.Link eventKey="members">Miembros</Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Card.Header>
@@ -37,15 +37,15 @@ export default function CardDetailGroup({ onClick }: RecentExpensesProps) {
                     <Tab.Pane eventKey="transactions">
                         <RecentExpenses onClick={onClick}/>
                     </Tab.Pane>
-                    <Tab.Pane eventKey="members">
-                    <MembersList members={[
-                            { name: "Juan Pérez", avatar: "https://via.placeholder.com/40" },
-                            { name: "María López", avatar: "https://via.placeholder.com/40" },
-                            { name: "Carlos Sánchez", avatar: "https://via.placeholder.com/40" }
-                        ]} />
-                    </Tab.Pane>
                     <Tab.Pane eventKey="objetives">
                         <Achievements></Achievements>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="members">
+                        <MembersList members={[
+                                { name: "Juan Pérez", avatar: "https://randomuser.me/api/portraits/thumb/men/98.jpg" },
+                                { name: "María López", avatar: "https://randomuser.me/api/portraits/thumb/women/0.jpg" },
+                                { name: "Carlos Sánchez", avatar: "https://randomuser.me/api/portraits/thumb/men/88.jpg" }
+                            ]} />
                     </Tab.Pane>
                 </Tab.Content>
                 {/* <Button variant="primary" style={{ width: '100%' }}><i className="bi bi-plus"></i>Agregar movimiento</Button> */}

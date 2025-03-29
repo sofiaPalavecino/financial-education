@@ -1,7 +1,6 @@
 import { useState } from "react"
 import MoneyFlowCard from "../../components/MoneyFlowCard/MoneyFlowCard"
 import FloatingButton from "../../components/FloatingButton/FloatingButton"
-import Goal from "../../components/Goal/Goal"
 import Modal from 'react-bootstrap/Modal'
 import { Button } from "react-bootstrap";
 import CardDetailGroup from '../../components/CardDetailTransactions/CardDetailTransactions';
