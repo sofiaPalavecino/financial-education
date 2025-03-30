@@ -4,7 +4,7 @@ export default function ModalCreateGroup({show, handleClose}: any) {
     return(
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Crear un nuevo grupo</Modal.Title>
+                <Modal.Title>Crea un nuevo grupo</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex mb-4">Crea un grupo para compartir gastos con amigos, familiares o colegas.</div>

@@ -22,7 +22,7 @@ export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
  
         <><div className="container d-flex justify-content-between">
       <div>
-        <h4>Tablero de movimientos💸</h4>
+        <h4>Tablero de movimientos</h4>
         <p className="text-muted subtitle">Últimos movimientos</p>
       </div>
       <Button
