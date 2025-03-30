@@ -1,7 +1,7 @@
 @import "../../scss/variables.scss";
 .c-achievements {
     .card {
-        
+        height: 16rem;
     }
     .card-body {
         padding: 2em 2em 2em 2em;
@@ -16,4 +16,8 @@
 
 .progress-bar{
     background-color: $principal !important;
+}
+
+.addObj{
+    border-color:  $principal !important;;
 }
