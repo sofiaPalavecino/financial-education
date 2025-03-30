@@ -4,10 +4,10 @@ import FloatingButton from "../../components/FloatingButton/FloatingButton"
 import Modal from 'react-bootstrap/Modal'
 import { useLocation } from "react-router-dom";
 import CardDetailTrasactions from "../../components/CardDetailTransactions/CardDetailTransactions";
-import mockExpenses from "../../components/__mocks__/mockExpenses";
 import { fetchGroupExpensesAndIncomes, fetchUserGroupPersonal } from "../../services/api";
 import { IExpense } from "../../interfaces/IExpense";
 import { getCategories } from '../../services/api';
+import { IGroupData } from "../../interfaces/IGroups";
 
 export default function Home () {
 
@@ -38,19 +38,31 @@ export default function Home () {
     };
 
     useEffect(() => {
+        const storedGroups = localStorage.getItem("userGroups");
+        console.log(storedGroups);
+        
+        if (storedGroups && !!isGroup && expenses.length > 0) {
+            const parsedGroups = JSON.parse(storedGroups);
+
+            const group = parsedGroups.find((g: IGroupData) => g.groups.id === currentGroupId);
+            setGroupTitle(group.groups.name)
+            
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentGroupId, expenses]);
+
+    useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
 
             let groupId = groupIdFromURL ? Number(groupIdFromURL) : null;
 
             if (!groupId) {
-                console.log("entro en el if");
-                
                 const personalGroup = await fetchUserGroupPersonal(Number(userId));
                 
                 if (personalGroup && personalGroup.length > 0) {
                     groupId = personalGroup[0].groups.id;
-                    // setGroupTitle(personalGroup[0].groups.name);
+                    localStorage.setItem("groupIdSpacePersonal", String(groupId));
                 }
             }
 
@@ -61,7 +73,7 @@ export default function Home () {
                 
                 setExpenses(transactions);
             } else {
-                setExpenses(mockExpenses);
+                setExpenses([]);
             }
 
             setLoading(false);
