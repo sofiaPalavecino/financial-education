@@ -4,13 +4,18 @@ import { supabase } from "../clients/SupabaseClients";
 
 export const fetchGroupExpensesAndIncomes = async (groupId: number): Promise<IExpense[]> => {
     try {
-        const [{ data: expenses, error: expenseError }, { data: incomes, error: incomeError }] = await Promise.all([
-            supabase.from("expenses").select("*").eq("group_id", groupId),
-            supabase.from("incomes").select("*").eq("group_id", groupId),
-        ]);
+        const { data: expenses, error: expenseError } = await supabase
+            .from('expenses')
+            .select('*')
+            .eq('group_id', groupId);
+
+        const { data: incomes, error: incomeError } = await supabase
+            .from('incomes')
+            .select('*')
+            .eq('group_id', groupId);
 
         if (expenseError || incomeError) {
-            throw new Error(expenseError?.message || incomeError?.message);
+            return [];
         }
 
         const expensesWithType = expenses?.map((expense) => ({
@@ -125,7 +130,7 @@ export const addExpense = async (expense: IExpense): Promise<any> => {
         const { data, error } = await supabase
         .from('expenses')
         .insert([
-            { user_id: expense.user_id, group_id: expense.group_id, amount: expense.amount,
+            { user_id: expense.user_id, group_id: expense.group_id, amount: Number(expense.amount),
               description: expense.description, category_id: expense.category_id,
               title: expense.title, priority: expense.priority
             }
@@ -135,7 +140,6 @@ export const addExpense = async (expense: IExpense): Promise<any> => {
             console.error('Error add expense:', error)
             return null
         }
-        
 
         return data;
     } catch (error) {

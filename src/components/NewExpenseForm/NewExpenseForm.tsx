@@ -10,10 +10,13 @@ type NewExpenseFormProps = {
 
 export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
 
+    const userId = localStorage.getItem("userId");
+    const groupId = localStorage.getItem("groupIdSpacePersonal")
+
     const [formData, setFormData] = useState<IExpense>({
         id: 0,
-        user_id: 1,
-        group_id: 2,
+        user_id: Number(userId),
+        group_id: Number(groupId),
         title: "",
         amount: 0,
         category_id: 1,
@@ -32,14 +35,13 @@ export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
 
-      const handleSubmit = (event: React.FormEvent) => {
+      const handleSubmit = async (event: React.FormEvent) => {
         const form = event.currentTarget as HTMLFormElement;
-        console.log(formData)
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
         } else {
-            addExpense(formData)
+            await addExpense(formData)
         }
         setValidated(true);
       };
