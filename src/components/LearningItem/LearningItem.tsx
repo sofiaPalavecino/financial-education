@@ -12,7 +12,7 @@ export default function LearningItem(course: ICourse){
                 <Card.Text className="text-muted">{course.description}</Card.Text>
             </Card.Header>
             <Card.Footer>
-                <Button className="w-full">
+                <Button className="w-full buttonPrimary">
                     Comenzar lectura
                 </Button>
             </Card.Footer>

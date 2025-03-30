@@ -10,7 +10,12 @@
 
 body {
   font-size: 14px;
-  background-color: $background !important;
+   background-image: url("./assets/background.png");
+   background-size: cover;
+}
+
+.bc-1{
+  background-color: $background ;
 }
 
 section{
@@ -75,7 +80,7 @@ section{
 
 .buttonPrimary a{
    text-decoration: none !important;
-   color: $typography !important;
+   color: $background!important;
 }
 
 .buttonSecondary {
@@ -95,6 +100,6 @@ section{
 
 .buttonSecondary a{
    text-decoration: none !important;
-   color: $typography !important;
+   color: $background !important;
 }
 

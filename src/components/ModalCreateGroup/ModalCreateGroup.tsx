@@ -4,7 +4,7 @@ export default function ModalCreateGroup({show, handleClose}: any) {
     return(
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Crear un nuevo grupo</Modal.Title>
+                <Modal.Title>Crea un nuevo grupo</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex mb-4">Crea un grupo para compartir gastos con amigos, familiares o colegas.</div>
@@ -15,7 +15,7 @@ export default function ModalCreateGroup({show, handleClose}: any) {
                             placeholder="e.g.,Casa, Viaje a París"
                             autoFocus
                         />
-                        <Form.Label className="mt-3">Objetivo del grupo</Form.Label>
+                        <Form.Label className="mt-3">Descripción del grupo</Form.Label>
                         <Form.Control autoFocus />
                     </Form.Group>
                 </Form>

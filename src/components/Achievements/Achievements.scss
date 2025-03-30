@@ -1,3 +1,4 @@
+@import "../../scss/variables.scss";
 .c-achievements {
     .card {
         
@@ -11,4 +12,8 @@
             margin-bottom: 2em;
         }
     }
+}
+
+.progress-bar{
+    background-color: $principal !important;
 }

@@ -107,7 +107,7 @@ export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
                 />
             </Form.Group>
 
-            <Button type="submit" variant="dark" className="w-100 d-flex align-items-center justify-content-center gap-2">
+            <Button type="submit" variant="dark" className="w-100 d-flex align-items-center justify-content-center gap-2 buttonPrimary">
                 <BsPlus size={20} />
                 Agregar gasto
             </Button>
