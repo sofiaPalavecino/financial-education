@@ -19,7 +19,7 @@ const Landing = () => {
     },
     {
       title: "Grupos 👥",
-      description: "Crea un presupuesto(?) con familia y amigos",
+      description: "Crea un presupuesto con familia y amigos",
       features: [
         "Crear grupos para gastos compartidos",
         "Seguimiento del historial de transacciones compartidas",
@@ -50,7 +50,7 @@ const Landing = () => {
         <Button  className="buttonPrimary mx-2">
         <a href="/login">Ingresá</a>
         </Button>
-        <Button  className="mx-2 buttonSecondary">
+        <Button  className="buttonSecondary mx-2 ">
         <a href="/register" >Registrate</a>
         </Button>
       </Container>
