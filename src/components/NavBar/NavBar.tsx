@@ -9,25 +9,6 @@ import './NavBar.scss'
 const Sidebar = () => {
   return (
 
-  // <Navbar expand="lg" className="bg-body-tertiary navbar">
-  //   <Container className="d-flex justify-content-center">
-  //     <Navbar.Brand href="/home" className="d-flex align-items-center">
-  //       <img 
-  //         src={logo} 
-  //         alt="Logo" 
-  //         width="60" 
-  //         height="80" 
-  //         className="me-2" 
-  //       />
-  //       <span className="brand-text">NUBIX</span>
-  //     </Navbar.Brand>
-  //     <Nav  >
-  //          <Nav.Link href="/grupos" >Grupos</Nav.Link>
-  //          <Nav.Link href="/educacion">Educación</Nav.Link>
-  //         </Nav>
-  //   </Container>
-  // </Navbar>
-
 <Navbar expand="lg" className="bg-body-tertiary navbar">
   <Container className="position-relative">
     <Nav className="ms-auto">
