@@ -20,10 +20,10 @@ export default function MoneyFlowCard () {
                     <Card.Header>
                         <Nav variant="tabs">
                             <Nav.Item className='w-50 text-center'>
-                                <Nav.Link eventKey="expenses">Gasto</Nav.Link>
+                                <Nav.Link eventKey="expenses" className='subtitle'>Gasto</Nav.Link>
                             </Nav.Item>
                             <Nav.Item className='w-50 text-center'>
-                                <Nav.Link eventKey="incomes">Ingreso</Nav.Link>
+                                <Nav.Link eventKey="incomes"  className='subtitle'>Ingreso</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Card.Header>

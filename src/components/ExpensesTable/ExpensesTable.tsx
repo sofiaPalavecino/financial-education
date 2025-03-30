@@ -21,19 +21,19 @@ export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
       <Card.Body>
         <div className="container d-flex justify-content-between">
           <div>
-            <h4>Tablero de movimientos</h4>
-            <p className="text-muted">Últimos movimientos</p>
+            <h4 className="h2title">Tablero de movimientos</h4>
+            <p className="text-muted sutitle">Últimos movimientos</p>
           </div>
           <Button
-            variant="primary"
-            className="p-1"
+           
+            className="p-1 buttonPrimary"
             onClick={onClick}
             style={{ height: "2.6em", width: "2.6em" }}
           >
             <BsPlusLg size={24} />
           </Button>
         </div>
-        <ListGroup variant="flush">
+        <ListGroup variant="flush" >
           {expenses.map((expense, index) => (
             <ExpensesTableItem categories={categories} key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />
           ))}

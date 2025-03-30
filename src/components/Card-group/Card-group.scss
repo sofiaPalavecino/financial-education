@@ -1,3 +1,7 @@
+@import "../../scss/variables.scss";
+@import "../../scss/fonts.scss";
+ 
+
 .c-card-group{
     .card {
         height: 16rem;
@@ -8,4 +12,26 @@
             justify-content: center;
         }
     }
+}
+
+
+
+.addGroup{
+    border-color:  $principal !important;
+}
+
+.buttonDetailGroup{
+    border-color:  $principal !important;
+    color:  $principal !important;
+}
+
+.buttonDetailGroup:hover{
+    border-color:  $principal !important;
+    background-color:  $principal !important;
+    color:  $typography !important;
+}
+
+.card-body:hover{
+    border-radius: 8px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.12); 
 }

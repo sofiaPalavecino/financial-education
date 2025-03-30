@@ -46,14 +46,11 @@ export default function Home () {
                     }
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Nuevo Movimiento</Modal.Title>
+                            <Modal.Title className="title">Nuevo Movimiento</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <MoneyFlowCard></MoneyFlowCard>
                         </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                        </Modal.Footer>
                     </Modal>
                     <CardDetailTrasactions onClick={handleShow} expenses={expenses} isGroup={isGroup} />
                     <FloatingButton onClick={handleShow} />

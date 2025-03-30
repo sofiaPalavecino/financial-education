@@ -20,14 +20,14 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
                 <Card.Header>
                     <Nav variant="tabs" defaultActiveKey="transactions">
                         <Nav.Item>
-                            <Nav.Link eventKey="transactions">Movimientos</Nav.Link>
+                            <Nav.Link eventKey="transactions" className="subtitle">Movimientos</Nav.Link>
                         </Nav.Item>
                         {isGroup && 
                         <Nav.Item>
-                            <Nav.Link eventKey="members">Miembros</Nav.Link>
+                            <Nav.Link eventKey="members" className="subtitle">Miembros</Nav.Link>
                         </Nav.Item>}
                         <Nav.Item>
-                            <Nav.Link eventKey="objetives">Objetivos</Nav.Link>
+                            <Nav.Link eventKey="objetives" className="subtitle">Objetivos</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Card.Header>

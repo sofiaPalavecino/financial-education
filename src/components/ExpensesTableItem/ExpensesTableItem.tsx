@@ -1,6 +1,7 @@
 import { ICategory } from "../../interfaces/ICategory";
 import { IExpense } from "../../interfaces/IExpense";
 import { ListGroup, Badge } from "react-bootstrap";
+import './ExpensesTableItem.scss'
 
 interface Props extends IExpense {
   categories: ICategory[];
