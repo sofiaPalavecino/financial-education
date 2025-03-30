@@ -59,7 +59,7 @@ export default function NewIncomeForm () {
                     onChange={handleChange}
                 />
                 <Form.Control.Feedback type="invalid">
-                    Por favor, ingresar un 
+                    Por favor, ingresar un importe
                 </Form.Control.Feedback>
             </Form.Group>
 

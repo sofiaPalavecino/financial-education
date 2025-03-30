@@ -35,7 +35,8 @@ export default function RecentExpenses({ onClick }: IRecentExpenses) {
   return (
     <>
       {expenses.length > 0 ? 
-      (<>      <div className="container d-flex justify-content-between">
+      (<>      
+      <div className="container d-flex justify-content-between mt-3">
         <div>
           <h4>Tablero de movimientos</h4>
           <p className="text-muted subtitle">Últimos movimientos</p>
@@ -50,7 +51,10 @@ export default function RecentExpenses({ onClick }: IRecentExpenses) {
         </Button>
       </div>
       <ListGroup variant="flush">
-        {expenses.map((expense, index) => (
+        {expenses
+          .slice()
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) 
+          .map((expense, index) => (
           <ExpensesTableItem categories={categories} key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />
         ))}
       </ListGroup></>):

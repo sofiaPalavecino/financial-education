@@ -87,7 +87,7 @@ export default function Achievements() {
     };
 
     return (
-        <div className="c-achievements container">
+        <div className="c-achievements container mt-3">
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                 <Modal.Title>Nuevo Movimiento</Modal.Title>
