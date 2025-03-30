@@ -8,6 +8,8 @@ import { fetchGroupExpensesAndIncomes, fetchUserGroupPersonal } from "../../serv
 import { IExpense } from "../../interfaces/IExpense";
 import { getCategories } from '../../services/api';
 import { IGroupData } from "../../interfaces/IGroups";
+import { ExpenseTips } from "../../components/TipsIA.tsx/TipsIA";
+// import { ReportAndChart } from "../../components/ReportAndChart/ReportAndChart";
 
 export default function Home () {
 
@@ -16,7 +18,7 @@ export default function Home () {
     const [groupTitle, setGroupTitle] = useState<string | null>(null);
     const [, setLoading] = useState(false);
     const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
-    const [currentGroupId, setCurrentGroupId] = useState<number | undefined>(undefined);
+    const [currentGroupId, setCurrentGroupId] = useState<number>();
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -39,7 +41,6 @@ export default function Home () {
 
     useEffect(() => {
         const storedGroups = localStorage.getItem("userGroups");
-        console.log(storedGroups);
         
         if (storedGroups && !!isGroup && expenses.length > 0) {
             const parsedGroups = JSON.parse(storedGroups);
@@ -59,9 +60,13 @@ export default function Home () {
 
             if (!groupId) {
                 const personalGroup = await fetchUserGroupPersonal(Number(userId));
+                console.log('personalGroup', personalGroup);
+                
                 
                 if (personalGroup && personalGroup.length > 0) {
                     groupId = personalGroup[0].groups.id;
+                    console.log('groupId', groupId);
+                    
                     localStorage.setItem("groupIdSpacePersonal", String(groupId));
                 }
             }
@@ -107,8 +112,8 @@ export default function Home () {
                     </Modal>
                     <CardDetailTrasactions onClick={handleShow} expenses={expenses} isGroup={isGroup} currentGroupId={currentGroupId } />
                     <FloatingButton onClick={handleShow} />
+                    <ExpenseTips groupId={currentGroupId} />
                 </div>
-
             </section>
         </main>
     )
