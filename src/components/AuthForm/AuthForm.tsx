@@ -1,5 +1,5 @@
 import { login } from "../../services/api";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -63,28 +63,46 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
     }
 
     setErrors(newErrors);
-    setIsValid(Object.keys(newErrors).length === 0);
   };
+
+  // Validar todos los campos cuando formData cambie
+  useEffect(() => {
+    const newErrors: { [key: string]: string } = {};
+
+    if (isSignup && !formData.name) newErrors.name = "El nombre es obligatorio";
+    if (!formData.email) newErrors.email = "El email es obligatorio";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      newErrors.email = "Ingrese un email válido";
+    if (!formData.password) newErrors.password = "La contraseña es obligatoria";
+    else if (formData.password.length < 6) newErrors.password = "Mínimo 6 caracteres";
+    if (isSignup && formData.confirmPassword !== formData.password)
+      newErrors.confirmPassword = "Las contraseñas no coinciden";
+
+    setErrors(newErrors);
+
+    // Si no hay errores, el formulario es válido
+    setIsValid(Object.keys(newErrors).length === 0);
+  }, [formData, isSignup]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!isValid) return;
 
     try {
-        const user = await login(formData.email, formData.password);
-        
-        if (!user) {
-            setErrors({ ...errors, general: "Credenciales incorrectas" });
-            return;
-        }
+      const user = await login(formData.email, formData.password);
 
-        localStorage.setItem("userId", user.id);
-        navigate("/home");
-      } catch (error) {
-          console.error("Error en el inicio de sesión:", error);
-          setErrors({ ...errors, general: "Ocurrió un error. Inténtelo más tarde." });
+      if (!user) {
+        setErrors({ ...errors, general: "Credenciales incorrectas" });
+        return;
       }
+
+      localStorage.setItem("userId", user.id);
+      navigate("/home");
+    } catch (error) {
+      console.error("Error en el inicio de sesión:", error);
+      setErrors({ ...errors, general: "Ocurrió un error. Inténtelo más tarde." });
+    }
   };
 
   return (
@@ -174,4 +192,3 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
 };
 
 export default AuthForm;
-

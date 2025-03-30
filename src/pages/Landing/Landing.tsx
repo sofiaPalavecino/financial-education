@@ -1,10 +1,18 @@
-import { Button, Container,  Row, Col } from "react-bootstrap";
+import { useEffect } from "react";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import KeyFeaturesCard from "../../components/KeyFeaturesCard/KeyFeaturesCard";
-import './Landing.scss'
-
-
+import './Landing.scss';
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      navigate("/home");
+    }
+  }, [navigate]);
 
   const features = [
     {
@@ -30,7 +38,6 @@ const Landing = () => {
       title: "Educación 📚",
       description: "Conoce como podes ahorrar y recibi tips personalizados",
       features: [
-        // "Lecciones financieras del tamaño de un bocado",
         "Consejos de ahorro personalizados impulsados por IA",
         "Seguimiento del progreso",
         "Consejos prácticos adaptados a tus gastos",
@@ -38,29 +45,36 @@ const Landing = () => {
     },
   ];
 
+  function redirectLogin() {
+    window.location.replace('/login');
+  }
+
+  function redirectRegister() {
+    window.location.replace('/register');
+  }
 
   return (
     <div className="bc-1">
       <Container className="text-center my-3">
         <h1 className="brand"> NUBIX </h1>
         <h2 className="title py-2 ">Transformá habitos, alcanzá metas</h2>
-        <p className= "subtitle py-3 ">
-        Controla los gastos, ya sea de manera individual o grupal y aprende habilidades financieras todo en un solo lugar. Toma el control de tu dinero con nuestra intuitiva aplicación de seguimiento de gastos.
+        <p className="subtitle py-3 ">
+          Controla los gastos, ya sea de manera individual o grupal y aprende habilidades financieras todo en un solo lugar. Toma el control de tu dinero con nuestra intuitiva aplicación de seguimiento de gastos.
         </p>
-        <Button  className="buttonPrimary mx-2">
-        <a href="/login">Ingresá</a>
+        <Button className="buttonPrimary mx-2" onClick={redirectLogin}>
+          Ingresá
         </Button>
-        <Button  className="mx-2 buttonSecondary">
-        <a href="/register" >Registrate</a>
+        <Button className="mx-2 buttonSecondary" onClick={redirectRegister}>
+          Registrate
         </Button>
       </Container>
-  
+
       <section className="landingImg"> </section>
 
       <section id="features" className="py-5">
         <Container>
           <div className="text-center mb-5">
-            <h2 className="title">¿Que te ofrecemos?</h2>
+            <h2 className="title">¿Qué te ofrecemos?</h2>
             <p className="subtitle py-2">
               Todo lo que necesitas para gestionar tu ahorro en un solo lugar.
             </p>
@@ -76,6 +90,6 @@ const Landing = () => {
       </section>
     </div>
   );
- };
+};
 
 export default Landing;
