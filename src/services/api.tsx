@@ -135,6 +135,7 @@ export const addExpense = async (expense: IExpense): Promise<any> => {
             console.error('Error add expense:', error)
             return null
         }
+        
 
         return data;
     } catch (error) {

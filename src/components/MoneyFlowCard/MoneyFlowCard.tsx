@@ -7,7 +7,6 @@ type MoneyFlowCardProps = {
 };
 
 export default function MoneyFlowCard ({ categories }:MoneyFlowCardProps ) {
-
     return (
             <Tab.Container defaultActiveKey="expenses"> 
                         <Nav variant="tabs">

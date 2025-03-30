@@ -1,19 +1,24 @@
 import { fetchUserGroups } from "../../services/api";
 import CardGroup from "../../components/CardGroup/CardGroup";
 import ModalCreateGroup from "../../components/ModalCreateGroup/ModalCreateGroup";
-import './Groups.scss'
+import './Groups.scss';
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function Groups () {
     const [show, setShow] = useState(false);
     const [groups, setGroups] = useState<any[]>([]);
+    const navigate = useNavigate();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     useEffect(() => {
         const userId = localStorage.getItem("userId");
-        
-        if (userId) {
+
+        if (!userId) {
+            navigate("/");
+        } else {
             const fetchGroups = async () => {
                 const userGroups = await fetchUserGroups(Number(userId));
                 
@@ -25,7 +30,7 @@ export default function Groups () {
 
             fetchGroups();
         }
-    }, []);
+    }, [navigate]);
 
     return (
         <section className="c-group">
