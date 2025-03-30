@@ -1,13 +1,17 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
+import { addIncomes } from "../../services/api";
 
 export default function NewIncomeForm () {
 
+    const [validated, setValidated] = useState(false);
+
     const [formData, setFormData] = useState({
+        user_id: 1,
+        group_id: 2,
         amount: "",
-        origin: "",
-        priority: "Medium",
+        title: "",
         description: "",
       });
     
@@ -15,34 +19,48 @@ export default function NewIncomeForm () {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
     
-      const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Income Submitted:", formData);
-      };
+      const handleSubmit = (event: React.FormEvent) => {
+            const form = event.currentTarget;
+            console.log(formData)
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                addIncomes(formData)
+            }
+            setValidated(true);
+        };
 
     return (
-        <Form onSubmit={handleSubmit} className="p-3">
+        <Form noValidate validated={validated} onSubmit={handleSubmit} className="p-3">
+            <Form.Group controlId="amount" className="mb-3">
+                <Form.Label>Título</Form.Label>
+                <Form.Control
+                    required
+                    type="text"
+                    name="title"
+                    placeholder="Título"
+                    value={formData.title}
+                    onChange={handleChange}
+                />
+                <Form.Control.Feedback type="invalid">
+                    Por favor, ingresar un título
+                </Form.Control.Feedback>
+            </Form.Group>
+            
             <Form.Group controlId="amount" className="mb-3">
                 <Form.Label>Importe</Form.Label>
                 <Form.Control
-                type="number"
-                name="amount"
-                placeholder="0.00"
-                value={formData.amount}
-                onChange={handleChange}
+                    required
+                    type="number"
+                    name="amount"
+                    placeholder="0.00"
+                    value={formData.amount}
+                    onChange={handleChange}
                 />
-            </Form.Group>
-
-            <Form.Group controlId="origin" className="mb-3">
-                <Form.Label>Origen</Form.Label>
-                <Form.Select name="origin" value={formData.origin} onChange={handleChange}>
-                    <option value="" selected disabled>Seleccionar origen</option>
-                    <option value="montly-money">Dinero mensual</option>
-                    <option value="salary">Salario</option>
-                    <option value="extra">Dinero Extra</option>
-                    <option value="plus">Plus</option>
-                    <option value="other">Otro</option>
-                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                    Por favor, ingresar un 
+                </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="description" className="mb-3">

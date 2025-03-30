@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import MoneyFlowCard from "../../components/MoneyFlowCard/MoneyFlowCard"
 import FloatingButton from "../../components/FloatingButton/FloatingButton"
 import Modal from 'react-bootstrap/Modal'
-import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import CardDetailTrasactions from "../../components/CardDetailTransactions/CardDetailTransactions";
 import mockExpenses from "../../components/__mocks__/mockExpenses";
@@ -40,7 +39,6 @@ export default function Home () {
         try {
             const response = await getCategories();
             setCategories(response || []);
-            console.log(response)
         } catch (error) {
             console.error("Error fetching categories:", error);
         }
