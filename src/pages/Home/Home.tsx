@@ -16,6 +16,7 @@ export default function Home () {
     const [groupTitle, setGroupTitle] = useState<string | null>(null);
     const [, setLoading] = useState(false);
     const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
+    const [currentGroupId, setCurrentGroupId] = useState<number | undefined>(undefined);
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -54,6 +55,8 @@ export default function Home () {
             }
 
             if (groupId) {
+                setCurrentGroupId(groupId);
+                
                 const transactions = await fetchGroupExpensesAndIncomes(groupId);
                 
                 setExpenses(transactions);
@@ -90,7 +93,7 @@ export default function Home () {
                             <MoneyFlowCard categories={categories}></MoneyFlowCard>
                         </Modal.Body>
                     </Modal>
-                    <CardDetailTrasactions onClick={handleShow} expenses={expenses} isGroup={isGroup} />
+                    <CardDetailTrasactions onClick={handleShow} expenses={expenses} isGroup={isGroup} currentGroupId={currentGroupId } />
                     <FloatingButton onClick={handleShow} />
                 </div>
 

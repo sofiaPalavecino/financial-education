@@ -2,11 +2,38 @@ import { Card, Nav, Tab } from "react-bootstrap";
 import RecentExpenses from '../ExpensesTable/ExpensesTable';
 import MembersList from "../MembersList/MembersList";
 import Achievements from "../Achievements/Achievements";
-import { useState } from "react";
-import { ICardDetailTransactions } from "@/interfaces/ICardDetailTransactions";
+import { useEffect, useState } from "react";
+import { IExpense } from "../../interfaces/IExpense";
+import { IGroupData, IUserXGroup } from "../../interfaces/IGroups";
+import { BsPersonCircle } from "react-icons/bs"; 
+export interface ICardDetailTransactions {
+    onClick: () => void;
+    expenses: IExpense[];
+    isGroup: boolean;
+    currentGroupId?: number;
+};
 
-export default function CardDetailTrasactions({ onClick, expenses, isGroup }: ICardDetailTransactions) {
+export default function CardDetailTrasactions({ onClick, expenses, isGroup, currentGroupId }: ICardDetailTransactions) {
     const [activeKey, setActiveKey] = useState<string>("transactions");
+    const [members, setMembers] = useState<{ name: string; avatar: string }[]>([]);
+
+    useEffect(() => {
+        const storedGroups = localStorage.getItem("userGroups");
+        if (storedGroups) {
+            const parsedGroups = JSON.parse(storedGroups);
+
+            const group = parsedGroups.find((g: IGroupData) => g.groups.id === currentGroupId);
+
+            if (group) {
+                const groupMembers = group.groups.usersXgroups.map((userXgroup: IUserXGroup) => ({
+                    name: userXgroup.users.name,
+                    avatar: <i className="bi bi-person"></i>
+                }));
+
+                setMembers(groupMembers);
+            }
+        }
+    }, [currentGroupId]);
 
     const handleTabSelect = (key: string | null) => {
         if (key) {
@@ -39,11 +66,7 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
                         </Tab.Pane>
                         {isGroup &&
                             <Tab.Pane eventKey="members">
-                                <MembersList members={[
-                                    { name: "Juan Pérez", avatar: "https://via.placeholder.com/40" },
-                                    { name: "María López", avatar: "https://via.placeholder.com/40" },
-                                    { name: "Carlos Sánchez", avatar: "https://via.placeholder.com/40" }
-                                ]} />
+                                <MembersList members={members} />
                             </Tab.Pane>
                         }
                     </Tab.Content>
