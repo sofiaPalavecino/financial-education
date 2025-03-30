@@ -70,6 +70,24 @@ export const fetchUserGroups = async (userId: number): Promise<any> => {
         return [];
     }
 };
+export async function login(email: string, password: string) {
+    try {
+        const { data } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', email)
+        .eq('password', password)
+
+        if (!data || data.length === 0) {
+            return null;
+        }
+
+        return data[0];
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
 
 export const fetchUserGroupPersonal = async (userId: number): Promise<any> => {
     try {

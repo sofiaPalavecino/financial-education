@@ -2,6 +2,11 @@
 @import "../../scss/fonts.scss";
  
 
+.brand{
+  font-family: $brand;
+  font-size: 80PX;
+}
+
 .landingImg {
     background-image: url("../../assets/landingImg.png");
     height: 400px;

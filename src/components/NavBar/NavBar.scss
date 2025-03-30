@@ -1,0 +1,28 @@
+@import "../../scss/variables.scss";
+@import "../../scss/fonts.scss";
+
+
+.navbar {
+  min-height: 100px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  background-color: $accentuation !important;
+  border-color: $principal !important;
+}
+
+.navbar .nav-link {
+  font-family: $bodyFont;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: bold;
+  font-size: 15px;
+  color: $typography !important;
+}
+
+.brand-text {
+  font-weight: bold;
+  font-size: 20px;
+  font-family: $brand;
+}
