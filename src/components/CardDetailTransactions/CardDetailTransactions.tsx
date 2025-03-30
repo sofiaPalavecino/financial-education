@@ -1,11 +1,10 @@
-import { Card, Nav, Tab } from "react-bootstrap";
+import { Nav, Tab } from "react-bootstrap";
 import RecentExpenses from '../ExpensesTable/ExpensesTable';
 import MembersList from "../MembersList/MembersList";
 import Achievements from "../Achievements/Achievements";
 import { useEffect, useState } from "react";
 import { IExpense } from "../../interfaces/IExpense";
 import { IGroupData, IUserXGroup } from "../../interfaces/IGroups";
-import { BsPersonCircle } from "react-icons/bs"; 
 export interface ICardDetailTransactions {
     onClick: () => void;
     expenses: IExpense[];
@@ -43,8 +42,6 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup, curr
 
     return (
         <Tab.Container activeKey={activeKey} onSelect={handleTabSelect}>
-            
-                
                     <Nav variant="tabs" defaultActiveKey="transactions">
                         <Nav.Item>
                             <Nav.Link eventKey="transactions" className="subtitle">Movimientos</Nav.Link>
