@@ -161,11 +161,9 @@ export const fetchGoals = async (groupId: number): Promise<any> => {
             .select('*')
             .eq('group_id', groupId)
 
-        console.log(data)
-
         if(error) {
             console.error('Error fetching objetives:', error)
-            return null;
+            return [];
         }
 
         return data;

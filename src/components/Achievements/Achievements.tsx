@@ -79,7 +79,7 @@ export default function Achievements() {
         <div className="c-achievements container">
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Nuevo Movimiento</Modal.Title>
+                <Modal.Title>Nuevo objetivo</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit} className="p-3">
@@ -126,7 +126,7 @@ export default function Achievements() {
                 </Modal.Footer>
             </Modal>
             <h2>Objetivos </h2>
-            <p className="text-muted subtitle">Hacé un seguiminto de tus objetivos</p>
+            <p className="text-muted subtitle">Hacé un seguimiento de tus objetivos</p>
             <div className="row my-4">
                 <div className="col">
                     <GoalsOverallProgressCard {...goalsStats} />

@@ -55,3 +55,31 @@ function getData(datos) {
     return JSON.stringify(datos)
 }
 
+export const getInfoModal = async (title): Promise<any> => {
+    // Preparación del prompt
+    const prompt = `
+   * Presentate como Nubi, un guia en este camino de aprendizaje, actúa como un amigo que te ayudara a aprender sobre herramientas de ahorro e inversion que habla de una manera para que todo el publico lo entienda. Tu tarea es contar informacion sobre ${title}
+   * Quiero que me des toda la info ordenada, debes aplicar codigo html y css para lograr una mejor visualizacion, asegurandote que no tenga fallos
+   * Tienes que seguir el formato que dejo abajo
+   * No tienes que explicar el codigo
+
+   - Introduccion
+     Texto
+   - Conceptos basicos
+     Texto
+   - Ejemplos
+     Texto
+   - Como puedo empezar a aplicar esto
+     Texto
+   "`;
+
+    // Interacción con OpenAI
+    const response = await ai.models.generateContent({
+        model: 'gemini-2.0-flash',
+        contents: [prompt]
+    });
+
+    // Procesamiento de resultados
+    return response.text;
+}
+
