@@ -6,13 +6,13 @@ export default function CardGroup({ groups, onAddGroup }: any) {
     return (
         <div className="row mt-4 c-card-group">
             <div className="col-md-4 mb-4">
-                <div className="card text-center" style={{ height: "14rem" }}>
+                <div className="card text-center addGroup" >
                     <div className="card-body card-body-center">
                         <Button onClick={onAddGroup} className="btn btn-primary rounded-circle">
                             <i className="bi bi-plus"></i>
                         </Button>
                         <h5 className="card-title mt-2">Crear nuevo grupo</h5>
-                        <p className="card-text">Agregar personas para compartir gastos</p>
+                        <p className="text-muted">Agregar personas para compartir gastos</p>
                     </div>
                 </div>
             </div>
@@ -21,8 +21,8 @@ export default function CardGroup({ groups, onAddGroup }: any) {
                     <div className="card text-center">
                         <div className="card-body card-body-center">
                             <h5 className="card-title">{group.title}</h5>
-                            <p className="card-text">{group.members}</p>
-                            <Button onClick={() => navigate(`/home?group=${encodeURIComponent(group.title)}`)} variant="outline-primary">
+                            <p className="text-muted">{group.members}</p>
+                            <Button onClick={() => navigate(`/home?group=${encodeURIComponent(group.title)}`)} variant="outline-primary" className="buttonDetailGroup">
                                 Ver detalles <i className="bi bi-arrow-right-short"></i>
                             </Button>
                         </div>

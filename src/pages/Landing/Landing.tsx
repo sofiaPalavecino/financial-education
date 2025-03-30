@@ -40,18 +40,18 @@ const Landing = () => {
 
 
   return (
-    <>
+    <div className="bc-1">
       <Container className="text-center my-3">
-        <h1 > AURA</h1>
-        <h2 className="title py-2 ">Simplifica tu vida financiera</h2>
+        <h1 className="brand"> NUBIX </h1>
+        <h2 className="title py-2 ">Transformá habitos, alcanzá metas</h2>
         <p className= "subtitle py-3 ">
         Controla los gastos, ya sea de manera individual o grupal y aprende habilidades financieras todo en un solo lugar. Toma el control de tu dinero con nuestra intuitiva aplicación de seguimiento de gastos.
         </p>
         <Button  className="buttonPrimary mx-2">
-        <a href="/login">Iniciar sesión</a>
+        <a href="/login">Ingresá</a>
         </Button>
         <Button  className="mx-2 buttonSecondary">
-        <a href="/register" >Regístrate</a>
+        <a href="/register" >Registrate</a>
         </Button>
       </Container>
   
@@ -74,7 +74,7 @@ const Landing = () => {
           </Row>
         </Container>
       </section>
-    </>
+    </div>
   );
  };
 

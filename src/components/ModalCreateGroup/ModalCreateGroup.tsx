@@ -15,7 +15,7 @@ export default function ModalCreateGroup({show, handleClose}: any) {
                             placeholder="e.g.,Casa, Viaje a París"
                             autoFocus
                         />
-                        <Form.Label className="mt-3">Objetivo del grupo</Form.Label>
+                        <Form.Label className="mt-3">Descripción del grupo</Form.Label>
                         <Form.Control autoFocus />
                     </Form.Group>
                 </Form>

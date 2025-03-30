@@ -94,7 +94,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
           <h2 className="text-center title">{isSignup ? "Crear una cuenta" : "Bienvenido de nuevo"}</h2>
           <p className="text-center subtitle">
             {isSignup
-              ? "Ingresa tus detalles para crear una cuenta"
+              ? "Ingresa tus datos para comenzar a ahorrar"
               : "Ingresa tus credenciales para acceder a tu cuenta"}
           </p>
           <Form onSubmit={handleSubmit}>
@@ -162,7 +162,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
           </Form>
           <p className="text-center mt-3">
             {isSignup ? (
-              <>¿Ya tienes una cuenta? <a href="/login">Iniciar sesión</a></>
+              <>¿Ya tienes una cuenta? <a href="/login">Ingresá</a></>
             ) : (
               <>¿No tienes una cuenta? <a href="/register">Regístrate</a></>
             )}
