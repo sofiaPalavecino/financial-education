@@ -1,20 +1,11 @@
 import { supabase } from "../clients/SupabaseClients";
 import { ai } from "../clients/IAClients";
 
-<<<<<<< Updated upstream
-export const getReport = async (groupId: number): Promise<any> => {
-    // Extracción de datos (ejemplo)
-    const { data: expenses, error: expenseError } = await supabase
-        .from('expenses')
-        .select('*')
-        .eq('group_id', groupId);
-=======
 export const getReport = async (groupId): Promise<any> => {
   const { data: expenses, error: expenseError } = await supabase
       .from('expenses')
       .select('*')
       .eq('group_id', groupId);
->>>>>>> Stashed changes
 
   const { data: incomes, error: incomeError } = await supabase
       .from('incomes')
@@ -31,15 +22,9 @@ export const getReport = async (groupId): Promise<any> => {
   const datos = [...expensesWithType, ...incomesWithType].sort((a, b) => new Date(a.date) - new Date(b.date));
   const formattedData = datos.map(getData).join('\n');
 
-<<<<<<< Updated upstream
-    // Combinamos ambos arrays y ordenamos por fecha
-    const datos = [...expensesWithType, ...incomesWithType].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    const formattedData = datos.map(getData).join('\n')
-=======
   const prompt = `
   "Actúa como Nubi, un guía experto en finanzas personales que habla como un amigo profesional para nuestros usuarios (una aplicación para aprender a ahorrar). Tu tarea es analizar la información de la tabla 'groups', que contiene datos sobre gastos, ingresos, montos, categorias y fechas, a partir de esto dar tips o recomendaciones cortos sobre metodos y estrategias de ahorro personalizadas para el perfil del usuario.
   Devuelve exactamente un JSON con consejos financieros personalizados sin formato adicional e inserta algunos emogis para que sea visualmente más atractivo.
->>>>>>> Stashed changes
 
   Datos:
 
@@ -88,15 +73,6 @@ export const getReport = async (groupId): Promise<any> => {
   }
 }
 
-<<<<<<< Updated upstream
-function getData(datos: any) {
-    return JSON.stringify(datos)
-}
-
-export const getInfoModal = async (title: string): Promise<any> => {
-    // Preparación del prompt
-    const prompt = `
-=======
 function getData(datos) {
   return JSON.stringify(datos)
 }
@@ -104,7 +80,6 @@ function getData(datos) {
 export const getInfoModal = async (title): Promise<any> => {
   // Preparación del prompt
   const prompt = `
->>>>>>> Stashed changes
    * Presentate como Nubi, un guia en este camino de aprendizaje, actúa como un amigo que te ayudara a aprender sobre herramientas de ahorro e inversion que habla de una manera para que todo el publico lo entienda. Tu tarea es contar informacion sobre ${title}
    * Quiero que me des toda la info ordenada, debes aplicar codigo html y css para lograr una mejor visualizacion, asegurandote que no tenga fallos
    * Tienes que seguir el formato que dejo abajo
