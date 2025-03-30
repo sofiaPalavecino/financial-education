@@ -125,16 +125,17 @@ export const fetchUserGroupPersonal = async (userId: number): Promise<any> => {
     }
 };
 
-export const addExpense = async (expense: IExpense): Promise<any> => {
+export const addExpense = async (expense: any): Promise<any> => {
     try {
         const { data, error } = await supabase
-        .from('expenses')
-        .insert([
-            { user_id: expense.user_id, group_id: expense.group_id, amount: Number(expense.amount),
-              description: expense.description, category_id: expense.category_id,
-              title: expense.title, priority: expense.priority
-            }
-        ])
+            .from('expenses')
+            .insert([
+                {
+                    user_id: expense.user_id, group_id: expense.group_id, amount: expense.amount,
+                    description: expense.description, category_id: expense.category_id,
+                    title: expense.title, priority: expense.priority
+                }
+            ])
 
         if (error) {
             console.error('Error add expense:', error)
