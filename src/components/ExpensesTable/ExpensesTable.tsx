@@ -19,7 +19,7 @@ export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
   return (
     <>
       {expenses.length > 0 ? 
-      (<>      
+      (<div className="c-expenses-table">      
       <div className="container d-flex justify-content-between mt-3">
         <div>
           <h2>Tablero de movimientos</h2>
@@ -41,7 +41,7 @@ export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
           .map((expense, index) => (
           <ExpensesTableItem categories={categories} key={index} {...expense} priority={expense.priority as "Low" | "Medium" | "High"} />
         ))}
-      </ListGroup></>):
+      </ListGroup></div>):
       (<h2 className="c-emphy-expenses"><i className="bi bi-exclamation-circle"></i>No existen movimientos.</h2>)
       }
     </>
