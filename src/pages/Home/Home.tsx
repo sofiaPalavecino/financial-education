@@ -8,11 +8,14 @@ import CardDetailTrasactions from "../../components/CardDetailTransactions/CardD
 import mockExpenses from "../../components/__mocks__/mockExpenses";
 import { fetchGroupExpensesAndIncomes } from "../../services/api";
 import { IExpense } from "../../interfaces/IExpense";
+import { getCategories } from '../../services/api';
 
 export default function Home () {
+
     const [show, setShow] = useState(false);
     const [groupExpenses, setGroupExpenses] = useState<IExpense[]>([]);
     const [, setLoading] = useState(false);
+    const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -27,6 +30,21 @@ export default function Home () {
                 .finally(() => setLoading(false));
         }
     }, [isGroup]);
+
+    
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        try {
+            const response = await getCategories();
+            setCategories(response || []);
+            console.log(response)
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+        }
+    };
 
     const expenses = isGroup && groupExpenses.length > 0 ? groupExpenses : mockExpenses;
 
@@ -49,7 +67,7 @@ export default function Home () {
                             <Modal.Title>Nuevo Movimiento</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <MoneyFlowCard></MoneyFlowCard>
+                            <MoneyFlowCard categories={categories}></MoneyFlowCard>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
