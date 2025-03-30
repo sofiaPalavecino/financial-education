@@ -8,8 +8,6 @@ interface CardGroupProps {
     onAddGroup: () => void;
 }
 export default function CardGroup({ groups, onAddGroup }: CardGroupProps) {
-    console.log(groups);
-
     const navigate = useNavigate();
     return (
         <div className="row mt-4 c-card-group">

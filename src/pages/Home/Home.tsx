@@ -60,15 +60,16 @@ export default function Home () {
             setLoading(true);
 
             let groupId = groupIdFromURL ? Number(groupIdFromURL) : null;
+            if (groupId) {
+                localStorage.setItem("groupIdSpacePersonal", String(groupIdFromURL));
+            }
 
             if (!groupId) {
                 const personalGroup = await fetchUserGroupPersonal(Number(userId));
-                console.log('personalGroup', personalGroup);
                 
                 
                 if (personalGroup && personalGroup.length > 0) {
                     groupId = personalGroup[0].groups.id;
-                    console.log('groupId', groupId);
                     
                     localStorage.setItem("groupIdSpacePersonal", String(groupId));
                 }

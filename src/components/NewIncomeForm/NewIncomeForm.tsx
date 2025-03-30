@@ -22,7 +22,6 @@ export default function NewIncomeForm () {
     
       const handleSubmit = (event: React.FormEvent) => {
             const form = event.currentTarget as HTMLFormElement;
-            console.log(formData)
             if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
