@@ -79,7 +79,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
             return;
         }
 
-        console.log("Usuario autenticado:", user);
+        localStorage.setItem("userId", user.id);
         navigate("/home");
       } catch (error) {
           console.error("Error en el inicio de sesión:", error);

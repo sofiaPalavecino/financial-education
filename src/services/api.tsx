@@ -55,13 +55,18 @@ export const fetchUserGroups = async (userId: number): Promise<any> => {
     try {
         const { data, error } = await supabase
             .from('usersXgroups')
-            .select('groups(*)')
+            .select(`
+                groups(*, 
+                    usersXgroups(user_id, users(id, name, email))
+                )
+            `)
             .eq('user_id', userId)
-            .eq('is_personal_space', false)
+            .filter('groups.is_personal_space', 'eq', false)
+            .not('groups', 'is', null);
 
         if (error) {
-            console.error('Error fetching groups:', error)
-            return null
+            console.error('Error fetching groups:', error);
+            return null;
         }
 
         return data;
@@ -93,13 +98,18 @@ export const fetchUserGroupPersonal = async (userId: number): Promise<any> => {
     try {
         const { data, error } = await supabase
             .from('usersXgroups')
-            .select('groups(*)')
+            .select(`
+                groups(*, 
+                    usersXgroups(user_id, users(id, name, email))
+                )
+            `)
             .eq('user_id', userId)
-            .eq('is_personal_space', true)
+            .filter('groups.is_personal_space', 'eq', true)
+            .not('groups', 'is', null);
 
         if (error) {
-            console.error('Error fetching group personal:', error)
-            return null
+            console.error('Error fetching group personal:', error);
+            return null;
         }
 
         return data;
