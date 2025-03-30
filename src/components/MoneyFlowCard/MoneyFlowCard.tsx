@@ -1,5 +1,4 @@
-import { Card, Nav, Tab } from 'react-bootstrap';
-import { useState } from 'react';
+import { Nav, Tab } from 'react-bootstrap';
 import NewExpenseForm from "../../components/NewExpenseForm/NewExpenseForm"
 import NewIncomeForm from '../NewIncomeForm/NewIncomeForm';
 
@@ -8,7 +7,6 @@ type MoneyFlowCardProps = {
 };
 
 export default function MoneyFlowCard ({ categories }:MoneyFlowCardProps ) {
-
     return (
             <Tab.Container defaultActiveKey="expenses"> 
                         <Nav variant="tabs">

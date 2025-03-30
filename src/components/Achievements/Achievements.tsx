@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Card, ProgressBar, Button, Form } from "react-bootstrap";
-import { BsPlusLg, BsPlus } from "react-icons/bs";
-import Modal from 'react-bootstrap/Modal'
+import { Card, Button } from "react-bootstrap";
+import { BsPlusLg } from "react-icons/bs";
 import Goal from "../Goal/Goal"
 import GoalsOverallProgressCard from "../GoalsOverallProgressCard/GoalsOverallProgressCard";
 import './Achievements.scss'
@@ -16,9 +15,9 @@ type GoalsStats = {
     totalGoals: number
 }
 
-function analyzeGoals(goals: Goal[]) {
+function analyzeGoals(goals:IGoals[]) {
     const totalGoals = goals.length;
-    const completedGoals = goals.filter(goal => goal.progress >= goal.goal).length;
+    const completedGoals = /* goals.filter(goal => goal.progress >= goal.goal).length */ 0;
     const completionPercentage = totalGoals > 0 ? (completedGoals / totalGoals) * 100 : 0;
 
     return {
@@ -32,7 +31,7 @@ const goalsStats: GoalsStats = analyzeGoals(mockGoals)
 
 export default function Achievements() {
 
-    const [show, setShow] = useState(false);
+    const [, setShow] = useState(false);
     const [groupGoals, setGroupGoals] = useState<IGoals[]>([]);
     const [, setLoading] = useState(false);
 
@@ -40,17 +39,6 @@ export default function Achievements() {
     const searchParams = new URLSearchParams(location.search);
     const groupTitle = searchParams.get("group");
     const isGroup = Boolean(groupTitle);
-
-    const [formData, setFormData] = useState({
-        id: 0,
-        title: "",
-        targetAmount: 0,
-        start_date: new Date(),
-        end_date: new Date(),
-        group_id: 0,
-        category_id: 0,
-        progress: 0,
-      });
 
     useEffect(() => {
         if (isGroup) {
@@ -63,17 +51,17 @@ export default function Achievements() {
 
     const goals = isGroup && groupGoals.length > 0 ? groupGoals : mockGoals;
     
-    const handleClose = () => setShow(false);
+    /* const handleClose = () => setShow(false); */
     const handleShow = () => setShow(true);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    /* const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Expense Submitted");
-    };
+    }; */
 
     return (
         <div className="c-achievements container mt-3">

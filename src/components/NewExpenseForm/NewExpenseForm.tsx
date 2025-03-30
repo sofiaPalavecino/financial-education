@@ -2,6 +2,7 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
 import { addExpense } from "../../services/api";
+import { IExpense } from "../../interfaces/IExpense";
 
 type NewExpenseFormProps = {
     categories: { id: string, name: string }[];
@@ -9,14 +10,20 @@ type NewExpenseFormProps = {
 
 export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<IExpense>({
+        id: 0,
         user_id: 1,
         group_id: 2,
         title: "",
-        amount: "",
+        amount: 0,
         category_id: 1,
         priority: "Medium",
         description: "",
+        date: "",
+        created_at: "",
+        updated_at: "",
+        deleted_at: "",
+        type: "expense"
       });
 
       const [validated, setValidated] = useState(false);
@@ -26,7 +33,7 @@ export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
       };
 
       const handleSubmit = (event: React.FormEvent) => {
-        const form = event.currentTarget;
+        const form = event.currentTarget as HTMLFormElement;
         console.log(formData)
         if (form.checkValidity() === false) {
             event.preventDefault();

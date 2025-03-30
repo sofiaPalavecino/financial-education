@@ -1,17 +1,16 @@
-import { Card, ProgressBar,  Button, Badge } from "react-bootstrap";
+import { Card, ProgressBar } from "react-bootstrap";
 
 type GoalProps = {
     id: number;
     title: string;
     target_amount: number;
     start_date: Date;
-    end_date: Date;
     group_id: number;
     category_id: number;
     progress: number;
 };
 
-export default function Goal({ title, target_amount, progress, end_date }: GoalProps) {
+export default function Goal({ title, target_amount, progress }: GoalProps) {
     
     const percentage = Math.min((progress / target_amount) * 100, 100);
     const percentageStand = Math.min((progress / target_amount) * 100, 100).toFixed(2);;

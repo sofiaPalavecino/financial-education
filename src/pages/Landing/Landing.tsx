@@ -27,7 +27,7 @@ const Landing = () => {
     },
     {
       title: "Grupos 👥",
-      description: "Crea un presupuesto(?) con familia y amigos",
+      description: "Crea un presupuesto con familia y amigos",
       features: [
         "Crear grupos para gastos compartidos",
         "Seguimiento del historial de transacciones compartidas",

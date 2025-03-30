@@ -2,17 +2,18 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
 import { addIncomes } from "../../services/api";
+import { IIncome } from "../../interfaces/IIncome";
 
 export default function NewIncomeForm () {
 
     const [validated, setValidated] = useState(false);
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<IIncome>({
         user_id: 1,
         group_id: 2,
-        amount: "",
+        amount: 0,
         title: "",
-        description: "",
+        description: ""
       });
     
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -20,7 +21,7 @@ export default function NewIncomeForm () {
       };
     
       const handleSubmit = (event: React.FormEvent) => {
-            const form = event.currentTarget;
+            const form = event.currentTarget as HTMLFormElement;
             console.log(formData)
             if (form.checkValidity() === false) {
                 event.preventDefault();

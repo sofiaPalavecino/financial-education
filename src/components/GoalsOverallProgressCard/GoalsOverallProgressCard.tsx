@@ -1,4 +1,4 @@
-import { Card, ProgressBar, Button } from "react-bootstrap";
+import { Card, ProgressBar } from "react-bootstrap";
 
 type GoalsStats = {
     completedGoals: number,

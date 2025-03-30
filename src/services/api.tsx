@@ -1,4 +1,5 @@
 import { IExpense } from "../interfaces/IExpense";
+import { IIncome } from "@/interfaces/IIncome";
 import { supabase } from "../clients/SupabaseClients";
 
 export const fetchGroupExpensesAndIncomes = async (groupId: number): Promise<IExpense[]> => {
@@ -119,7 +120,7 @@ export const fetchUserGroupPersonal = async (userId: number): Promise<any> => {
     }
 };
 
-export const addExpense = async (expense): Promise<any> => {
+export const addExpense = async (expense: IExpense): Promise<any> => {
     try {
         const { data, error } = await supabase
         .from('expenses')
@@ -134,6 +135,7 @@ export const addExpense = async (expense): Promise<any> => {
             console.error('Error add expense:', error)
             return null
         }
+        
 
         return data;
     } catch (error) {
@@ -142,7 +144,7 @@ export const addExpense = async (expense): Promise<any> => {
     }
 };
 
-export const addIncomes = async (income): Promise<any> => {
+export const addIncomes = async (income: IIncome): Promise<any> => {
     try {
         const { data, error } = await supabase
         .from('incomes')
