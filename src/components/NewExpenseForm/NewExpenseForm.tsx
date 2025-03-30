@@ -1,55 +1,99 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { BsPlus } from "react-icons/bs";
+import { addExpense } from "../../services/api";
 
-export default function NewExpenseForm () {
+type NewExpenseFormProps = {
+    categories: { id: string, name: string }[];
+};
+
+export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
 
     const [formData, setFormData] = useState({
+        user_id: 1,
+        group_id: 2,
+        title: "",
         amount: "",
-        category: "",
+        category_id: 1,
         priority: "Medium",
         description: "",
       });
+
+      const [validated, setValidated] = useState(false);
     
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
-    
-      const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Expense Submitted:", formData);
+
+      const handleSubmit = (event: React.FormEvent) => {
+        const form = event.currentTarget;
+        console.log(formData)
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            addExpense(formData)
+        }
+        setValidated(true);
       };
 
     return (
-        <Form onSubmit={handleSubmit} className="p-3">
+        <Form noValidate validated={validated} onSubmit={handleSubmit} className="p-3">
+            <Form.Group controlId="amount" className="mb-3">
+                <Form.Label>Título</Form.Label>
+                <Form.Control
+                    required
+                    type="text"
+                    name="title"
+                    placeholder="Título"
+                    value={formData.title}
+                    onChange={handleChange}
+                />
+                <Form.Control.Feedback type="invalid">
+                    Por favor, ingresar un título
+                </Form.Control.Feedback>
+            </Form.Group>
+            
             <Form.Group controlId="amount" className="mb-3">
                 <Form.Label>Importe</Form.Label>
                 <Form.Control
-                type="number"
-                name="amount"
-                placeholder="0.00"
-                value={formData.amount}
-                onChange={handleChange}
+                    required
+                    type="number"
+                    name="amount"
+                    placeholder="0.00"
+                    value={formData.amount}
+                    onChange={handleChange}
                 />
+                <Form.Control.Feedback type="invalid">
+                    Por favor, ingresar un importe
+                </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="category" className="mb-3">
                 <Form.Label>Categoria</Form.Label>
-                <Form.Select name="category" value={formData.category} onChange={handleChange}>
+                <Form.Select name="category_id" value={formData.category_id} onChange={handleChange} required>
                     <option value="" selected disabled>Seleccionar categoria</option>
-                    <option value="food">Comida</option>
-                    <option value="transport">Transporte</option>
-                    <option value="entertainment">Cultura</option>
+                    {
+                        categories.map((category, index) => (
+                            <option key={index} value={categories[index].id}>{category.name}</option>
+                        ))
+                    }
                 </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                    Por favor, ingresar una categoría
+                </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="priority" className="mb-3">
                 <Form.Label>Prioridad</Form.Label>
-                <Form.Select name="priority" value={formData.priority} onChange={handleChange}>
+                <Form.Select name="priority" value={formData.priority} onChange={handleChange} required>
                     <option value="Low">Baja</option>
                     <option value="Medium">Media</option>
                     <option value="High">Alta</option>
                 </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                    Por favor, ingresar la prioridad
+                </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="description" className="mb-3">

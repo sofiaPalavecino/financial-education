@@ -125,8 +125,8 @@ export default function Achievements() {
                 <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
                 </Modal.Footer>
             </Modal>
-            <h2>Objetivos 🎯</h2>
-            <p className="text-muted">Hacé un seguiminto de tus objetivos</p>
+            <h2>Objetivos </h2>
+            <p className="text-muted subtitle">Hacé un seguiminto de tus objetivos</p>
             <div className="row my-4">
                 <div className="col">
                     <GoalsOverallProgressCard {...goalsStats} />
@@ -136,12 +136,12 @@ export default function Achievements() {
                         <Card.Body className="d-flex flex-column align-items-center">
                             <Button 
                                 variant="secondary"
-                                className="d-flex align-items-center rounded-circle shadow mb-4"
+                                className="d-flex align-items-center rounded-circle shadow mb-4 buttonPrimary"
                                 style={{ width: "45px", height: "45px" }}
                                 onClick={handleShow}
                             ><BsPlusLg size={30} />
                             </Button>
-                            <p>Creá un nuevo objetivo</p>
+                            <h5 className="card-title mt-2">Creá un nuevo objetivo</h5>
                             <p className="text-muted">Creá un nuevo objetivo financiero para darle seguimiento</p>
                         </Card.Body>
                     </Card>

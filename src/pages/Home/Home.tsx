@@ -2,17 +2,19 @@ import { useState, useEffect } from "react"
 import MoneyFlowCard from "../../components/MoneyFlowCard/MoneyFlowCard"
 import FloatingButton from "../../components/FloatingButton/FloatingButton"
 import Modal from 'react-bootstrap/Modal'
-import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import CardDetailTrasactions from "../../components/CardDetailTransactions/CardDetailTransactions";
 import mockExpenses from "../../components/__mocks__/mockExpenses";
 import { fetchGroupExpensesAndIncomes } from "../../services/api";
 import { IExpense } from "../../interfaces/IExpense";
+import { getCategories } from '../../services/api';
 
 export default function Home () {
+
     const [show, setShow] = useState(false);
     const [groupExpenses, setGroupExpenses] = useState<IExpense[]>([]);
     const [, setLoading] = useState(false);
+    const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -27,6 +29,20 @@ export default function Home () {
                 .finally(() => setLoading(false));
         }
     }, [isGroup]);
+
+    
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        try {
+            const response = await getCategories();
+            setCategories(response || []);
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+        }
+    };
 
     const expenses = isGroup && groupExpenses.length > 0 ? groupExpenses : mockExpenses;
 
@@ -49,7 +65,7 @@ export default function Home () {
                             <Modal.Title className="title">Nuevo Movimiento</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <MoneyFlowCard></MoneyFlowCard>
+                            <MoneyFlowCard categories={categories}></MoneyFlowCard>
                         </Modal.Body>
                     </Modal>
                     <CardDetailTrasactions onClick={handleShow} expenses={expenses} isGroup={isGroup} />

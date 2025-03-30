@@ -3,7 +3,11 @@ import { useState } from 'react';
 import NewExpenseForm from "../../components/NewExpenseForm/NewExpenseForm"
 import NewIncomeForm from '../NewIncomeForm/NewIncomeForm';
 
-export default function MoneyFlowCard () {
+type MoneyFlowCardProps = {
+    categories: { id: string, name: string }[];
+};
+
+export default function MoneyFlowCard ({ categories }:MoneyFlowCardProps ) {
 
     return (
             <Tab.Container defaultActiveKey="expenses"> 
@@ -17,7 +21,7 @@ export default function MoneyFlowCard () {
                         </Nav>
                         <Tab.Content>
                             <Tab.Pane eventKey="expenses">
-                                <NewExpenseForm></NewExpenseForm>
+                                <NewExpenseForm categories={categories}></NewExpenseForm>
                             </Tab.Pane>
                             <Tab.Pane eventKey="incomes">
                                 <NewIncomeForm></NewIncomeForm>

@@ -11,8 +11,8 @@ export default function CardGroup({ groups, onAddGroup }: any) {
                         <Button onClick={onAddGroup} className="btn btn-primary rounded-circle">
                             <i className="bi bi-plus"></i>
                         </Button>
-                        <h5 className="card-title mt-2">Crear nuevo grupo</h5>
-                        <p className="text-muted">Agregar personas para compartir gastos</p>
+                        <h5 className="card-title mt-2">Crea un nuevo grupo</h5>
+                        <p className="text-muted">Agregá personas para compartir gastos</p>
                     </div>
                 </div>
             </div>
