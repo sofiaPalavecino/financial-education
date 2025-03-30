@@ -29,12 +29,13 @@ export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
       const [validated, setValidated] = useState(false);
     
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const value = e.target.name === "amount" ? parseFloat(e.target.value) : e.target.value;
+        setFormData({ ...formData, [e.target.name]: value });
       };
 
       const handleSubmit = (event: React.FormEvent) => {
-        const form = event.currentTarget as HTMLFormElement;
-        console.log(formData)
+        const form = event.currentTarget;
+
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -79,7 +80,7 @@ export default function NewExpenseForm ( { categories }: NewExpenseFormProps ) {
             <Form.Group controlId="category" className="mb-3">
                 <Form.Label>Categoria</Form.Label>
                 <Form.Select name="category_id" value={formData.category_id} onChange={handleChange} required>
-                    <option value="" selected disabled>Seleccionar categoria</option>
+                    <option value="" disabled>Seleccionar categoria</option>
                     {
                         categories.map((category, index) => (
                             <option key={index} value={categories[index].id}>{category.name}</option>
