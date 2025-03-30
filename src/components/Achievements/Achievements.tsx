@@ -1,51 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, ProgressBar, Button, Form } from "react-bootstrap";
 import { BsPlusLg, BsPlus } from "react-icons/bs";
 import Modal from 'react-bootstrap/Modal'
 import Goal from "../Goal/Goal"
 import GoalsOverallProgressCard from "../GoalsOverallProgressCard/GoalsOverallProgressCard";
 import './Achievements.scss'
-
-type Goal = {
-    name: string;
-    goal: number;
-    progress: number;
-    date: string;
-    categories: string[];
-};
+import { fetchGoals } from "../../services/api";
+import { IGoals } from "../../interfaces/IGoals";
+import { useLocation } from "react-router-dom";
+import mockGoals from "../../components/__mocks__/mockGoals";
 
 type GoalsStats = {
     completedGoals: number,
     completionPercentage: number,
     totalGoals: number
 }
-
-const goals = [
-    {
-        name: "Viaje",
-        goal: 350,
-        progress: 75.8,
-        date: "29/03/2025",
-        categories: [
-            "Casa",
-            "Muebles"
-        ]
-    },
-    {
-        name: "Sillón",
-        goal: 200,
-        progress: 75.8,
-        date: "15/03/2025",
-        categories: ["Casa"]
-    },
-    {
-        name: "Sillón",
-        goal: 200,
-        progress: 200,
-        date: "15/02/2025",
-        categories: ["Casa"]
-    }
-]
 
 function analyzeGoals(goals: Goal[]) {
     const totalGoals = goals.length;
@@ -59,20 +28,40 @@ function analyzeGoals(goals: Goal[]) {
     };
 }
 
-const goalsStats: GoalsStats = analyzeGoals(goals)
-
-console.log(goalsStats)
+const goalsStats: GoalsStats = analyzeGoals(mockGoals)
 
 export default function Achievements() {
 
     const [show, setShow] = useState(false);
+    const [groupGoals, setGroupGoals] = useState<IGoals[]>([]);
+    const [, setLoading] = useState(false);
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const groupTitle = searchParams.get("group");
+    const isGroup = Boolean(groupTitle);
 
     const [formData, setFormData] = useState({
-        name: "",
-        goal: 0,
-        date: "",
-        category: ""
+        id: 0,
+        title: "",
+        targetAmount: 0,
+        start_date: new Date(),
+        end_date: new Date(),
+        group_id: 0,
+        category_id: 0,
+        progress: 0,
       });
+
+    useEffect(() => {
+        if (isGroup) {
+            setLoading(true);
+            fetchGoals(3)
+                .then((data) => setGroupGoals(data))
+                .finally(() => setLoading(false));
+        }
+    }, [isGroup]);
+
+    const goals = isGroup && groupGoals.length > 0 ? groupGoals : mockGoals;
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -90,7 +79,7 @@ export default function Achievements() {
         <div className="c-achievements container">
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Nuevo Movimiento</Modal.Title>
+                <Modal.Title>Nuevo objetivo</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit} className="p-3">
@@ -100,7 +89,7 @@ export default function Achievements() {
                             type="textarea"
                             name="name"
                             placeholder="Ingresa un nombre"
-                            value={formData.name}
+                            value={formData.title}
                             onChange={handleChange}
                             />
                         </Form.Group>
@@ -111,14 +100,14 @@ export default function Achievements() {
                             type="number"
                             name="goal"
                             placeholder="0.00"
-                            value={formData.goal}
+                            value={formData.targetAmount}
                             onChange={handleChange}
                             />
                         </Form.Group>
 
                         <Form.Group controlId="category" className="mb-3">
                             <Form.Label>Categoria</Form.Label>
-                            <Form.Select name="category" value={formData.category} onChange={handleChange}>
+                            <Form.Select name="category" value={formData.category_id} onChange={handleChange}>
                                 <option value="" selected disabled>Seleccionar categoria</option>
                                 <option value="food">Comida</option>
                                 <option value="transport">Transporte</option>
@@ -137,7 +126,7 @@ export default function Achievements() {
                 </Modal.Footer>
             </Modal>
             <h2>Objetivos </h2>
-            <p className="text-muted subtitle">Hacé un seguiminto de tus objetivos</p>
+            <p className="text-muted subtitle">Hacé un seguimiento de tus objetivos</p>
             <div className="row my-4">
                 <div className="col">
                     <GoalsOverallProgressCard {...goalsStats} />
@@ -160,7 +149,7 @@ export default function Achievements() {
             </div>
             <div className="goals-container">
                 { goals.map((goal, index) => (
-                    <Goal key={index} {...goal}></Goal>
+                    <Goal progress={0} key={index} {...goal}></Goal>
                 ))}
             </div>
         </div>
