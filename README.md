@@ -16,6 +16,13 @@ Los usuarios pueden:
 
 Próximamente, también podrán fijar objetivos de ahorro y llevar un seguimiento de su progreso.
 
+## ¡Probalo en vivo!
+
+https://financial-education.onrender.com/
+
+Usuario: juan@gmail.com
+Contraseña: 123456
+
 ## Instalación y Configuración
 
 Para correr Nubix localmente, seguí estos pasos:
