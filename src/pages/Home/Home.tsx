@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react"
-import MoneyFlowCard from "../../components/MoneyFlowCard/MoneyFlowCard"
-import FloatingButton from "../../components/FloatingButton/FloatingButton"
-import Modal from 'react-bootstrap/Modal'
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import MoneyFlowCard from "../../components/MoneyFlowCard/MoneyFlowCard";
+import FloatingButton from "../../components/FloatingButton/FloatingButton";
+import Modal from 'react-bootstrap/Modal';
+import { useLocation, useNavigate } from "react-router-dom";
 import CardDetailTrasactions from "../../components/CardDetailTransactions/CardDetailTransactions";
 import { fetchGroupExpensesAndIncomes, fetchUserGroupPersonal } from "../../services/api";
 import { IExpense } from "../../interfaces/IExpense";
@@ -12,7 +12,6 @@ import { ExpenseTips } from "../../components/TipsIA.tsx/TipsIA";
 // import { ReportAndChart } from "../../components/ReportAndChart/ReportAndChart";
 
 export default function Home () {
-
     const [show, setShow] = useState(false);
     const [expenses, setExpenses] = useState<IExpense[]>([]);
     const [groupTitle, setGroupTitle] = useState<string | null>(null);
@@ -21,10 +20,17 @@ export default function Home () {
     const [currentGroupId, setCurrentGroupId] = useState<number>();
 
     const location = useLocation();
+    const navigate = useNavigate();
     const searchParams = new URLSearchParams(location.search);
-    const groupIdFromURL  = searchParams.get("group");
+    const groupIdFromURL = searchParams.get("group");
     const userId = localStorage.getItem("userId");
     const isGroup = Boolean(groupIdFromURL);
+
+    useEffect(() => {
+        if (!userId) {
+            navigate("/");
+        }
+    }, [userId, navigate]);
 
     useEffect(() => {
         fetchCategories();
@@ -44,12 +50,9 @@ export default function Home () {
         
         if (storedGroups && !!isGroup && expenses.length > 0) {
             const parsedGroups = JSON.parse(storedGroups);
-
             const group = parsedGroups.find((g: IGroupData) => g.groups.id === currentGroupId);
-            setGroupTitle(group.groups.name)
-            
+            setGroupTitle(group.groups.name);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentGroupId, expenses]);
 
     useEffect(() => {
@@ -73,9 +76,7 @@ export default function Home () {
 
             if (groupId) {
                 setCurrentGroupId(groupId);
-                
                 const transactions = await fetchGroupExpensesAndIncomes(groupId);
-                
                 setExpenses(transactions);
             } else {
                 setExpenses([]);
@@ -87,21 +88,19 @@ export default function Home () {
         fetchData();
     }, [groupIdFromURL, userId]);
 
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
 
     return (
         <main>
             <section>
                 <div className="wrap">
-                    {isGroup &&
+                    {isGroup && (
                         <div>
                             <h1 className="mb-1">{groupTitle}</h1>
                             <div className="mb-4 subtitle">Detalles del grupo y transacciones</div>
                         </div>
-                    }
+                    )}
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                             <Modal.Title className="title">Nuevo Movimiento</Modal.Title>
@@ -110,11 +109,11 @@ export default function Home () {
                             <MoneyFlowCard categories={categories}></MoneyFlowCard>
                         </Modal.Body>
                     </Modal>
-                    <CardDetailTrasactions onClick={handleShow} expenses={expenses} isGroup={isGroup} currentGroupId={currentGroupId } />
+                    <CardDetailTrasactions onClick={handleShow} expenses={expenses} isGroup={isGroup} currentGroupId={currentGroupId} />
                     <FloatingButton onClick={handleShow} />
                     <ExpenseTips groupId={currentGroupId} />
                 </div>
             </section>
         </main>
-    )
+    );
 }
