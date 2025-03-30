@@ -65,6 +65,11 @@ export const fetchUserGroups = async (userId: number): Promise<any> => {
         }
 
         return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
 export async function login(email: string, password: string) {
     try {
         const { data } = await supabase
@@ -74,15 +79,14 @@ export async function login(email: string, password: string) {
         .eq('password', password)
 
         if (!data || data.length === 0) {
-            return null; // No se encontró usuario con esas credenciales
+            return null;
         }
 
-        return data[0]; // Retornamos el usuario encontrado
+        return data[0];
     } catch (error) {
         console.error("Error fetching data:", error);
         return [];
     }
-<<<<<<< HEAD
 };
 
 export const fetchUserGroupPersonal = async (userId: number): Promise<any> => {
@@ -149,9 +153,6 @@ export const addIncomes = async (income): Promise<any> => {
         return [];
     }
 };
-=======
-}
->>>>>>> acf2562 (Add function login in Api.tsx, auth login user)
 
 
 
