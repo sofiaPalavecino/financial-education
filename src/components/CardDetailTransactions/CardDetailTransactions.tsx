@@ -22,19 +22,22 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
                         <Nav.Item>
                             <Nav.Link eventKey="transactions" className="subtitle">Movimientos</Nav.Link>
                         </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="objetives" className="subtitle">Objetivos</Nav.Link>
+                        </Nav.Item>
                         {isGroup && 
                         <Nav.Item>
                             <Nav.Link eventKey="members" className="subtitle">Miembros</Nav.Link>
                         </Nav.Item>}
-                        <Nav.Item>
-                            <Nav.Link eventKey="objetives" className="subtitle">Objetivos</Nav.Link>
-                        </Nav.Item>
                     </Nav>
                 </Card.Header>
                 <Card.Body>
                     <Tab.Content>
                         <Tab.Pane eventKey="transactions">
                             <RecentExpenses onClick={onClick} expenses={expenses} />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="objetives" >
+                            <Achievements></Achievements>
                         </Tab.Pane>
                         {isGroup &&
                             <Tab.Pane eventKey="members">
@@ -45,9 +48,6 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
                                 ]} />
                             </Tab.Pane>
                         }
-                        <Tab.Pane eventKey="objetives">
-                            <Achievements></Achievements>
-                        </Tab.Pane>
                     </Tab.Content>
                 </Card.Body>
             </Card>

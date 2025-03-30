@@ -1,4 +1,4 @@
-import mockGroups from "../../components/__mocks__/MockGroups";
+import mockGroups from "../../components/__mocks__/mockGroups";
 import CardGroup from "../../components/Card-group/Card-group";
 import ModalCreateGroup from "../../components/ModalCreateGroup/ModalCreateGroup";
 import { useState } from "react";
