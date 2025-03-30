@@ -14,7 +14,7 @@ export default function CardGroup({ groups, onAddGroup }: CardGroupProps) {
     return (
         <div className="row mt-4 c-card-group">
             <div className="col-md-4 mb-4">
-                <div className="card text-center" style={{ height: "14rem" }}>
+                <div className="card text-center  addGroup">
                     <div className="card-body card-body-center">
                         <Button onClick={onAddGroup} className="btn btn-primary rounded-circle">
                             <i className="bi bi-plus"></i>

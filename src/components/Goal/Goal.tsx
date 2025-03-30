@@ -25,7 +25,8 @@ export default function Goal({ title, target_amount, progress, end_date }: GoalP
                             <Badge key={index} bg="secondary">{category}</Badge>
                         )) }
                     </div> */}
-                    <span className="mb-2 text-muted">{end_date.toString()}</span>
+                    {/* <span className="mb-2 text-muted">{end_date.toString()}</span> */}
+                    <span className="mb-2 text-muted">30/03/2025</span>
                 </div>
                 <Card.Title>{ title }</Card.Title>
                 <Card.Text>

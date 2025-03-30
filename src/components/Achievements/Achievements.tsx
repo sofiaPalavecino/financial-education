@@ -77,7 +77,7 @@ export default function Achievements() {
 
     return (
         <div className="c-achievements container mt-3">
-            <Modal show={show} onHide={handleClose}>
+            {/* <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                 <Modal.Title>Nuevo objetivo</Modal.Title>
                 </Modal.Header>
@@ -95,7 +95,7 @@ export default function Achievements() {
                         </Form.Group>
 
                         <Form.Group controlId="goal" className="mb-3">
-                            <Form.Label>Objetivo</Form.Label>
+                            <Form.Label>Objetivo $$</Form.Label>
                             <Form.Control
                             type="number"
                             name="goal"
@@ -115,24 +115,23 @@ export default function Achievements() {
                             </Form.Select>
                         </Form.Group>
 
-                        <Button type="submit" variant="dark" className="w-100 d-flex align-items-center justify-content-center gap-2">
+                        <Button type="submit" variant="dark" className="w-100 d-flex align-items-center justify-content-center gap-2 buttonPrimary">
                             <BsPlus size={20} />
-                            Agregar gasto
+                            Agregar objetivo
                         </Button>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                </Modal.Footer>
-            </Modal>
-            <h2>Objetivos </h2>
+            </Modal> */}
+          <div className="d-flex align-items-center">
+             <h2 className="mb-0">Objetivos</h2>
+            <span className="badge bg-secondary ms-2">Próximamente</span>
+            </div>
+            
             <p className="text-muted subtitle">Hacé un seguimiento de tus objetivos</p>
             <div className="row my-4">
-                <div className="col">
-                    <GoalsOverallProgressCard {...goalsStats} />
-                </div>
-                <div className="col">
-                    <Card>
+               
+                <div className="col ">
+                    <Card className="addObj">
                         <Card.Body className="d-flex flex-column align-items-center">
                             <Button 
                                 variant="secondary"
@@ -145,6 +144,10 @@ export default function Achievements() {
                             <p className="text-muted">Creá un nuevo objetivo financiero para darle seguimiento</p>
                         </Card.Body>
                     </Card>
+                </div>
+
+                <div className="col">
+                    <GoalsOverallProgressCard {...goalsStats} />
                 </div>
             </div>
             <div className="goals-container">
