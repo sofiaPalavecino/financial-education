@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, ProgressBar, Button, Form } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 import { BsPlusLg, BsPlus } from "react-icons/bs";
 import Modal from 'react-bootstrap/Modal'
 import Goal from "../Goal/Goal"
@@ -16,9 +16,9 @@ type GoalsStats = {
     totalGoals: number
 }
 
-function analyzeGoals(goals: Goal[]) {
+function analyzeGoals(goals:IGoals[]) {
     const totalGoals = goals.length;
-    const completedGoals = goals.filter(goal => goal.progress >= goal.goal).length;
+    const completedGoals = /* goals.filter(goal => goal.progress >= goal.goal).length */ 0;
     const completionPercentage = totalGoals > 0 ? (completedGoals / totalGoals) * 100 : 0;
 
     return {

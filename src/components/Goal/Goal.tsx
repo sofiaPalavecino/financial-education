@@ -1,4 +1,4 @@
-import { Card, ProgressBar,  Button, Badge } from "react-bootstrap";
+import { Card, ProgressBar } from "react-bootstrap";
 
 type GoalProps = {
     id: number;

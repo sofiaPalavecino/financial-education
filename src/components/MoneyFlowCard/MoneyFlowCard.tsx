@@ -1,5 +1,4 @@
-import { Card, Nav, Tab } from 'react-bootstrap';
-import { useState } from 'react';
+import { Nav, Tab } from 'react-bootstrap';
 import NewExpenseForm from "../../components/NewExpenseForm/NewExpenseForm"
 import NewIncomeForm from '../NewIncomeForm/NewIncomeForm';
 
