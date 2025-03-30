@@ -16,8 +16,8 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
 
     return (
         <Tab.Container activeKey={activeKey} onSelect={handleTabSelect}>
-            <Card className="shadow-sm">
-                <Card.Header>
+            
+                
                     <Nav variant="tabs" defaultActiveKey="transactions">
                         <Nav.Item>
                             <Nav.Link eventKey="transactions" className="subtitle">Movimientos</Nav.Link>
@@ -30,8 +30,6 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
                             <Nav.Link eventKey="members" className="subtitle">Miembros</Nav.Link>
                         </Nav.Item>}
                     </Nav>
-                </Card.Header>
-                <Card.Body>
                     <Tab.Content>
                         <Tab.Pane eventKey="transactions">
                             <RecentExpenses onClick={onClick} expenses={expenses} />
@@ -49,8 +47,6 @@ export default function CardDetailTrasactions({ onClick, expenses, isGroup }: IC
                             </Tab.Pane>
                         }
                     </Tab.Content>
-                </Card.Body>
-            </Card>
         </Tab.Container>
     )
 }

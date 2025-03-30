@@ -41,7 +41,7 @@ export default function Home () {
                     {groupTitle &&
                         <div>
                             <h1 className="mb-1">{groupTitle}</h1>
-                            <div className="mb-4">Detalles del grupo y transacciones</div>
+                            <div className="mb-4 subtitle">Detalles del grupo y transacciones</div>
                         </div>
                     }
                     <Modal show={show} onHide={handleClose}>
