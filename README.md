@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+# Nubix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ¿Qué es Nubix?
 
-Currently, two official plugins are available:
+Nubix es una herramienta pensada para ayudar a las personas a mejorar sus hábitos financieros. Con Nubix, los usuarios pueden hacer un seguimiento de sus gastos e ingresos, ya sea de manera individual o grupal, y generar reportes personalizados con la ayuda de Inteligencia Artificial.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Además, Nubix cuenta con una sección dedicada al aprendizaje de estrategias de ahorro y, próximamente, sumará herramientas de inversión. 
 
-## Expanding the ESLint configuration
+## ¿Cómo funciona?
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Los usuarios pueden:
+- Cargar sus gastos y asignarles una categoría según su importancia.
+- Registrar sus ingresos para tener un panorama claro de su situación financiera.
+- Recibir reportes personalizados generados por Nubi, nuestra agente de IA, con info sobre sus hábitos de gasto.
+- Acceder a contenido educativo sobre ahorro y estrategias financieras.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Próximamente, también podrán fijar objetivos de ahorro y llevar un seguimiento de su progreso.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Instalación y Configuración
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Para correr Nubix localmente, seguí estos pasos:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+1. Cloná el repositorio:
+   ```sh
+   git clone https://github.com/tu-usuario/nubix.git
+   ```
+
+2. Entrá al directorio del proyecto:
+   ```sh
+   cd nubix
+   ```
+
+3. Instalá las dependencias:
+   ```sh
+   npm install
+   ```
+
+4. Iniciá el servidor de desarrollo:
+   ```sh
+   npm run dev
+   ```
+
+Esto va a levantar la app en modo desarrollo y vas a poder acceder desde el navegador a través del link al localhost generado en la terminal.
+
+
+---
+
+🌟 **Únite a Nubix y mejorá tus hábitos financieros hoy mismo!**
+
