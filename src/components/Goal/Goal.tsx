@@ -1,34 +1,37 @@
 import { Card, ProgressBar,  Button, Badge } from "react-bootstrap";
 
 type GoalProps = {
-    name: string;
-    goal: number;
+    id: number;
+    title: string;
+    target_amount: number;
+    start_date: Date;
+    end_date: Date;
+    group_id: number;
+    category_id: number;
     progress: number;
-    date: string;
-    categories: string[];
 };
 
-export default function Goal({ name, goal, progress, date, categories }: GoalProps) {
+export default function Goal({ title, target_amount, progress, end_date }: GoalProps) {
     
-    const percentage = Math.min((progress / goal) * 100, 100);
-    const percentageStand = Math.min((progress / goal) * 100, 100).toFixed(2);;
+    const percentage = Math.min((progress / target_amount) * 100, 100);
+    const percentageStand = Math.min((progress / target_amount) * 100, 100).toFixed(2);;
     
     return (
         <Card>
             <Card.Body>
                 <div className="d-flex justify-content-between">
-                    <div className="d-flex align-items-center gap-2 mb-2">
+                    {/* <div className="d-flex align-items-center gap-2 mb-2">
                         { categories.map((category, index) => (
                             <Badge key={index} bg="secondary">{category}</Badge>
                         )) }
-                    </div>
-                    <span className="mb-2 text-muted">{date}</span>
+                    </div> */}
+                    <span className="mb-2 text-muted">{end_date.toString()}</span>
                 </div>
-                <Card.Title>{ name }</Card.Title>
+                <Card.Title>{ title }</Card.Title>
                 <Card.Text>
                     <div className="d-flex justify-content-between">
                         <p className="">${ progress }</p>
-                        <p className="">${ goal }</p>
+                        <p className="">${ target_amount }</p>
                     </div>
                     <ProgressBar variant="dark" now={percentage} />
                     <p className="text-muted">{percentageStand}% completado</p>

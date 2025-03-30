@@ -121,7 +121,7 @@ export const addExpense = async (expense): Promise<any> => {
         ])
 
         if (error) {
-            console.error('Error fetching group personal:', error)
+            console.error('Error add expense:', error)
             return null
         }
 
@@ -143,8 +143,29 @@ export const addIncomes = async (income): Promise<any> => {
         ])
 
         if (error) {
-            console.error('Error fetching group personal:', error)
+            console.error('Error add incomes:', error)
             return null
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+
+export const fetchGoals = async (groupId: number): Promise<any> => {
+    try {
+        const { data, error } = await supabase
+            .from('objetives')
+            .select('*')
+            .eq('group_id', groupId)
+
+        console.log(data)
+
+        if(error) {
+            console.error('Error fetching objetives:', error)
+            return null;
         }
 
         return data;
