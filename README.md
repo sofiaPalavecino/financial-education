@@ -22,7 +22,7 @@ Para correr Nubix localmente, seguí estos pasos:
 
 1. Cloná el repositorio:
    ```sh
-   git clone https://github.com/tu-usuario/nubix.git
+   git clone https://github.com/sofiaPalavecino/financial-education.git
    ```
 
 2. Entrá al directorio del proyecto:
