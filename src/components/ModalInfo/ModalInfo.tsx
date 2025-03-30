@@ -16,12 +16,18 @@ export default function ModalInfo({ show, handleClose, title, }: ModalInfoProps)
         if (show) {
             setLoading(true)
             getInfoModal(title)
-              .then((response) => setData(response || "No hay informacion disponible"))
-              .catch((error) => {
-                console.error("Error obteniendo datos: ", error);
-                setData("Error al obtener la informacion");
-              })
-              .finally(() => setLoading(false));
+                .then((response) => {
+                    if (typeof response === "string") {
+                        setData(response);
+                    } else {
+                        setData("No hay información disponible");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error obteniendo datos: ", error);
+                    setData("Error al obtener la informacion");
+                })
+                .finally(() => setLoading(false));
         }
     }, [show, title]);
     return (
@@ -30,7 +36,7 @@ export default function ModalInfo({ show, handleClose, title, }: ModalInfoProps)
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {loading ? (<Spinner animation="border" />) : (<div dangerouslySetInnerHTML={{ __html: data || ""}} />)}
+                {loading ? (<Spinner animation="border" />) : (<div dangerouslySetInnerHTML={{ __html: data || "" }} />)}
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
