@@ -23,33 +23,6 @@ Coming soon: Users will also be able to set savings goals and track their progre
 **User:** `juan@gmail.com`  
 **Password:** `123456`  
 
-## Installation and Setup  
-
-To run Nubix locally, follow these steps:  
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/sofiaPalavecino/financial-education.git
-   ```
-
-2. Enter the project directory:
-   ```sh
-   cd financial-education
-   ```
-
-3. Install dependencies:
-   ```sh
-   npm install
-   ```
-
-4. Start the development server:
-   ```sh
-   npm run dev
-   ```
-
-This will start the app in development mode. You can access it in your browser using the localhost link generated in the terminal.
-
-
 ---
 
 🌟 **Join Nubix and start improving your financial habits today!**
