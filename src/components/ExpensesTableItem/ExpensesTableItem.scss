@@ -1,3 +1,64 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.c-expenses-table-item{
+    /* d-flex justify-content-between align-items-center */
+    &.--mobile {
+        @include media-breakpoint-up(md) {
+            display: none;
+        }
+    }
+    &.--desktop {
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+    }
+    display: flex;
+    @include media-breakpoint-up(md){
+        justify-content: space-between;
+        align-items: center;
+    }
+    @include media-breakpoint-down(md){
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__title {
+        display: flex;
+        flex-direction: row;
+        strong {
+            margin-right: 0.5em;
+        }
+
+        @include media-breakpoint-down(md){
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            span {
+                margin-left: 0.5em;
+            }
+        }
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+        @include media-breakpoint-down(md){
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            &-badges {
+                .badge {
+                    margin-right: 0.5em;
+                }
+            }
+            &-amount {
+                @include media-breakpoint-down(md){
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
 
 .bg-warning{
     background-color:#ffcc98 !important;

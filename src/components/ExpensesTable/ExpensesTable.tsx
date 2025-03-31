@@ -16,11 +16,13 @@ export default function RecentExpenses({ onClick, expenses }: IRecentExpenses) {
     });
   }, []);
 
+  console.log("expenses", expenses);
+
   return (
     <>
       {expenses.length > 0 ? 
       (<div className="c-expenses-table">      
-      <div className="container d-flex justify-content-between mt-3">
+      <div className="d-flex justify-content-between mt-3">
         <div>
           <h2>Tablero de movimientos</h2>
           <p className="text-muted subtitle">Últimos movimientos</p>
