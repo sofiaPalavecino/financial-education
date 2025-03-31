@@ -17,7 +17,7 @@ const Sidebar = () => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary navbar">
+    <Navbar expand="lg" className="navbar">
       <Container className="position-relative">
         <Nav className="ms-auto">
           <Nav.Link href="/grupos">Grupos</Nav.Link>
