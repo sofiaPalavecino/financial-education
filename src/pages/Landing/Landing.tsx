@@ -45,14 +45,6 @@ const Landing = () => {
     },
   ];
 
-  function redirectLogin() {
-    window.location.replace('/login');
-  }
-
-  function redirectRegister() {
-    window.location.replace('/register');
-  }
-
   return (
     <div className="bc-1">
       <Container className="text-center my-3">
@@ -61,11 +53,8 @@ const Landing = () => {
         <p className="subtitle py-3 ">
           Controla los gastos, ya sea de manera individual o grupal y aprende habilidades financieras todo en un solo lugar. Toma el control de tu dinero con nuestra intuitiva aplicación de seguimiento de gastos.
         </p>
-        <Button className="buttonPrimary mx-2" onClick={redirectLogin}>
-          Ingresá
-        </Button>
-        <Button className="mx-2 buttonSecondary" onClick={redirectRegister}>
-          Registrate
+        <Button className="buttonPrimary mx-2">
+          <a href="/login">Ingresá</a>
         </Button>
       </Container>
 

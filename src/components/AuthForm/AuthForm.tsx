@@ -15,23 +15,46 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [isValid, setIsValid] = useState(false);
-  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+  /* const [isValid, setIsValid] = useState(false);
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({}); */
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    if (formData.email && formData.password) {
+      handleLogin();
+    }
+  }, [formData]);
+
+  const handleLogin = async () => {
+    try {
+      const user = await login(formData.email, formData.password);
+  
+      if (!user) {
+        setErrors({ ...errors, general: "Credenciales incorrectas" });
+        return;
+      }
+  
+      localStorage.setItem("userId", user.id);
+      navigate("/home");
+    } catch (error) {
+      console.error("Error en el inicio de sesión:", error);
+      setErrors({ ...errors, general: "Ocurrió un error. Inténtelo más tarde." });
+    }
+  };
+
+  /* const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (touched[name]) validateField(name, value);
-  };
+  }; */
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  /* const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setTouched({ ...touched, [name]: true });
     validateField(name, value);
-  };
+  }; */
 
-  const validateField = (name: string, value: string) => {
+  /* const validateField = (name: string, value: string) => {
     const newErrors = { ...errors };
 
     switch (name) {
@@ -63,10 +86,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
     }
 
     setErrors(newErrors);
-  };
+  }; */
 
   // Validar todos los campos cuando formData cambie
-  useEffect(() => {
+  /* useEffect(() => {
     const newErrors: { [key: string]: string } = {};
 
     if (isSignup && !formData.name) newErrors.name = "El nombre es obligatorio";
@@ -82,15 +105,28 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
 
     // Si no hay errores, el formulario es válido
     setIsValid(Object.keys(newErrors).length === 0);
-  }, [formData, isSignup]);
+  }, [formData, isSignup]); */
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!isValid) return;
+    // if (!isValid) return;
 
-    try {
+    const demoUser = {
+      ...formData, 
+      email: "juan@gmail.com",
+      password: "123456"
+    }
+
+    await setFormData(prev => ({ ...prev, email: demoUser.email, password: demoUser.password }));
+
+    console.log(formData)
+
+    /* try {
+      console.log(formData)
       const user = await login(formData.email, formData.password);
+
+      console.log("Usuario:", user.id);
 
       if (!user) {
         setErrors({ ...errors, general: "Credenciales incorrectas" });
@@ -102,14 +138,19 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);
       setErrors({ ...errors, general: "Ocurrió un error. Inténtelo más tarde." });
-    }
+    } */
   };
 
   return (
-    <Container className="mt-5">
+    <div className="d-flex flex-column align-items-center justify-content-center vh-50">
+      <h2 className="text-center title">{isSignup ? "Crear una cuenta" : "Bienvenido de nuevo"}</h2>
+
+      <Button className="buttonPrimary mt-5" onClick={handleSubmit}>
+        <a href="/home">Ingreso a la DEMO</a>
+      </Button>
+      { /* <Container className="mt-5">
       <Row className="justify-content-md-center">
         <Col md={6}>
-          <h2 className="text-center title">{isSignup ? "Crear una cuenta" : "Bienvenido de nuevo"}</h2>
           <p className="text-center subtitle">
             {isSignup
               ? "Ingresa tus datos para comenzar a ahorrar"
@@ -187,7 +228,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ isSignup }) => {
           </p>
         </Col>
       </Row>
-    </Container>
+    </Container> */}
+    </div>
+    
   );
 };
 

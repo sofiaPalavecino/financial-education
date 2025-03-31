@@ -16,7 +16,11 @@ export default function Login() {
     return (
         <div className="bc-1">
             <section className="authImg"></section>
-            <AuthForm isSignup={false} />
+            <section>
+                <div className="wrap">
+                    <AuthForm isSignup={false} />
+                </div>
+            </section>
         </div>
     );
 }
